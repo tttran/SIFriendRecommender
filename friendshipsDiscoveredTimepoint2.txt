@@ -1,0 +1,174 @@
+Among all of the data from Timepoint 2 we found:
+
+Number of Not Close Users in the Lattice Network: 292
+Number of Somewhat Close Users in the Lattice Network: 24
+Number of Very Close Users in the Lattice Network: 5
+
+Lattice User Friendships
+-------------------------------------------------------------------------
+
+User: u4001
+Somewhat close friends:  ['u4127']
+Close Friends:  []
+
+
+
+User: u4004
+Somewhat close friends:  []
+Close Friends:  ['u4001']
+
+
+
+User: u4009
+Somewhat close friends:  ['u4006', 'u4007']
+Close Friends:  []
+
+
+
+User: u4015
+Somewhat close friends:  ['u4017']
+Close Friends:  []
+
+
+
+User: u4020
+Somewhat close friends:  ['u4017', 'u4022']
+Close Friends:  []
+
+
+
+User: u4021
+Somewhat close friends:  ['u4020']
+Close Friends:  []
+
+
+
+User: u4026
+Somewhat close friends:  ['u4023', 'u4024', 'u4027']
+Close Friends:  ['u4029']
+
+
+
+User: u4037
+Somewhat close friends:  ['u4036', 'u4036', 'u4038']
+Close Friends:  []
+
+
+
+User: u4046
+Somewhat close friends:  ['u4044', 'u4048']
+Close Friends:  []
+
+
+
+User: u4058
+Somewhat close friends:  ['u4057']
+Close Friends:  []
+
+
+
+User: u4059
+Somewhat close friends:  []
+Close Friends:  ['u4057']
+
+
+
+User: u4061
+Somewhat close friends:  ['u4064']
+Close Friends:  []
+
+
+
+User: u4068
+Somewhat close friends:  ['u4070']
+Close Friends:  []
+
+
+
+User: u4072
+Somewhat close friends:  ['u4069', 'u4070', 'u4073', 'u4075']
+Close Friends:  []
+
+
+
+User: u4090
+Somewhat close friends:  ['u4090']
+Close Friends:  []
+
+
+
+User: u4095
+Somewhat close friends:  []
+Close Friends:  ['u4095']
+
+
+
+User: u4104
+Somewhat close friends:  []
+Close Friends:  ['u4104']
+
+
+
+User: u4126
+Somewhat close friends:  ['u4127']
+Close Friends:  []
+
+-------------------------------------------------------------------------------------
+
+Small World 
+
+Among all of the data from Timepoint 2 we found:
+
+Number of Not Close Users in the Small World Network: 301
+Number of Somewhat Close Users in the Small World Network: 13
+Number of Very Close Users in the Small World Network: 3
+
+Small World Friendships
+-----------------------------------------------------------------------------
+
+
+User: u4135
+Somewhat close friends:  []
+Close Friends:  ['u4202', 'u4205']
+
+
+
+User: u4159
+Somewhat close friends:  ['u4010', 'u4011']
+Close Friends:  []
+
+
+
+User: u4193
+Somewhat close friends:  ['u4137']
+Close Friends:  []
+
+
+
+User: u4207
+Somewhat close friends:  ['u4202', 'u4204', 'u4206']
+Close Friends:  []
+
+
+
+User: u4215
+Somewhat close friends:  ['u4137', 'u4237']
+Close Friends:  []
+
+
+
+User: u4228
+Somewhat close friends:  ['u4325', 'u4224']
+Close Friends:  []
+
+
+
+User: u4245
+Somewhat close friends:  []
+Close Friends:  ['u4190']
+
+
+
+User: u4246
+Somewhat close friends:  ['u4015', 'u4011', 'u4014']
+Close Friends:  []

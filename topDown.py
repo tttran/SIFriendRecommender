@@ -10,6 +10,8 @@ usersSmall = []
 class user:
     def __init__(self, username, friend1, friend2, friend3, friend4, friend5, friend6):
         self.username = username
+        self.somewhatCloseFriends = []
+        self.closeFriends = []
 
         self.age = 0
         self.male = 0
@@ -256,18 +258,32 @@ class user:
         print self.sameCurrentSmoker6
         print self.sameExSmoker6
 
-def setFriends():
-    with open('Timepoint2Clean.csv') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=',')
-        for row in reader:
-            currentUser = user(row["username"], row["Recovery Buddy [1]"], row["Recovery Buddy [2]"], row["Recovery Buddy [3]"], row["Recovery Buddy [4]"], row["Recovery Buddy [5]"], row["Recovery Buddy [6]"])
-            parsedUsername = row["username"]
-            parsedUsername = parsedUsername[1:]
-            currentUser.setCloseness(row["How close to you feel to Buddy 1"], row["How close to you feel to Buddy 2"], row["How close to you feel to Buddy 3"], row["How close to you feel to Buddy 4"], row["How close to you feel to Buddy 5"], row["How close to you feel to Buddy 6"])
-            if int(parsedUsername) <= 4128:
-                usersLattice.append(currentUser)
-            else:
-                usersSmall.append(currentUser)
+def setFriends(timepoint):
+    if timepoint == 2:
+        with open('Timepoint2AllData.csv') as csvfile:
+            reader = csv.DictReader(csvfile, delimiter=',')
+            for row in reader:
+                currentUser = user(row["username"], row["Recovery Buddy [1]"], row["Recovery Buddy [2]"], row["Recovery Buddy [3]"], row["Recovery Buddy [4]"], row["Recovery Buddy [5]"], row["Recovery Buddy [6]"])
+                parsedUsername = row["username"]
+                parsedUsername = parsedUsername[1:]
+                currentUser.setCloseness(row["How close to you feel to Buddy 1"], row["How close to you feel to Buddy 2"], row["How close to you feel to Buddy 3"], row["How close to you feel to Buddy 4"], row["How close to you feel to Buddy 5"], row["How close to you feel to Buddy 6"])
+                if int(parsedUsername) <= 4128:
+                    usersLattice.append(currentUser)
+                else:
+                    usersSmall.append(currentUser)
+
+    if timepoint == 3:
+        with open('Timepoint3AllData.csv') as csvfile:
+            reader = csv.DictReader(csvfile, delimiter=',')
+            for row in reader:
+                currentUser = user(row["username"], row["Recovery Buddy [1]"], row["Recovery Buddy [2]"], row["Recovery Buddy [3]"], row["Recovery Buddy [4]"], row["Recovery Buddy [5]"], row["Recovery Buddy [6]"])
+                parsedUsername = row["username"]
+                parsedUsername = parsedUsername[1:]
+                currentUser.setCloseness(row["How close to you feel to Buddy 1"], row["How close to you feel to Buddy 2"], row["How close to you feel to Buddy 3"], row["How close to you feel to Buddy 4"], row["How close to you feel to Buddy 5"], row["How close to you feel to Buddy 6"])
+                if int(parsedUsername) <= 4128:
+                    usersLattice.append(currentUser)
+                else:
+                    usersSmall.append(currentUser)
 
 def setDemographics():
     with open('DemoLattice.csv') as csvfile:
@@ -387,7 +403,8 @@ def setDemographics():
             currentUser.currentSmoker = int(row["Current Smoker"])
             currentUser.exSmoker = int(row["Ex-Smoker"])
 
-def setSimilarities():
+#this method needs work to work with both timepoints, will throw errors on timepoint 3 data b/c of formatting differences
+def setSimilarities(timepoint):
     #for each user
     for currUser in usersLattice:
         #if friend is good data
@@ -667,43 +684,55 @@ def tallyCloseness():
             if lattUser.close1 == "not close":
                 lattNotClose += 1
             elif lattUser.close1 == "somewhat close":
+                lattUser.somewhatCloseFriends.append(lattUser.friend1)
                 lattSomewhat += 1
             elif lattUser.close1 == "very close":
+                lattUser.closeFriends.append(lattUser.friend1)
                 lattClose += 1
         if lattUser.friend2 != "null":
             if lattUser.close2 == "not close":
                 lattNotClose += 1
             elif lattUser.close2 == "somewhat close":
+                lattUser.somewhatCloseFriends.append(lattUser.friend2)
                 lattSomewhat += 1
             elif lattUser.close2 == "very close":
+                lattUser.closeFriends.append(lattUser.friend2)
                 lattClose += 1
         if lattUser.friend3 != "null":
             if lattUser.close3 == "not close":
                 lattNotClose += 1
             elif lattUser.close3 == "somewhat close":
+                lattUser.somewhatCloseFriends.append(lattUser.friend3)
                 lattSomewhat += 1
             elif lattUser.close3 == "very close":
+                lattUser.closeFriends.append(lattUser.friend3)
                 lattClose += 1
         if lattUser.friend4 != "null":
             if lattUser.close4 == "not close":
                 lattNotClose += 1
             elif lattUser.close4 == "somewhat close":
+                lattUser.somewhatCloseFriends.append(lattUser.friend4)
                 lattSomewhat += 1
             elif lattUser.close4 == "very close":
+                lattUser.closeFriends.append(lattUser.friend4)
                 lattClose += 1
         if lattUser.friend5 != "null":
             if lattUser.close5 == "not close":
                 lattNotClose += 1
             elif lattUser.close5 == "somewhat close":
+                lattUser.somewhatCloseFriends.append(lattUser.friend5)
                 lattSomewhat += 1
             elif lattUser.close5 == "very close":
+                lattUser.closeFriends.append(lattUser.friend5)
                 lattClose += 1
         if lattUser.friend6 != "null":
             if lattUser.close6 == "not close":
                 lattNotClose += 1
             elif lattUser.close6 == "somewhat close":
+                lattUser.somewhatCloseFriends.append(lattUser.friend6)
                 lattSomewhat += 1
             elif lattUser.close6 == "very close":
+                lattUser.closeFriends.append(lattUser.friend6)
                 lattClose += 1
 
     smallNotClose = 0
@@ -714,46 +743,58 @@ def tallyCloseness():
             if smallUser.close1 == "not close":
                 smallNotClose += 1
             elif smallUser.close1 == "somewhat close":
+                smallUser.somewhatCloseFriends.append(smallUser.friend1)
                 smallSomewhat += 1
             elif smallUser.close1 == "very close":
+                smallUser.closeFriends.append(smallUser.friend1)
                 smallClose += 1
         if smallUser.friend2 != "null":
             if smallUser.close2 == "not close":
                 smallNotClose += 1
             elif smallUser.close2 == "somewhat close":
+                smallUser.somewhatCloseFriends.append(smallUser.friend2)
                 smallSomewhat += 1
             elif smallUser.close2 == "very close":
+                smallUser.closeFriends.append(smallUser.friend2)
                 smallClose += 1
         if smallUser.friend3 != "null":
             if smallUser.close3 == "not close":
                 smallNotClose += 1
             elif smallUser.close3 == "somewhat close":
+                smallUser.somewhatCloseFriends.append(smallUser.friend3)
                 smallSomewhat += 1
             elif smallUser.close3 == "very close":
+                smallUser.closeFriends.append(smallUser.friend3)
                 smallClose += 1
         if smallUser.friend4 != "null":
             if smallUser.close4 == "not close":
                 smallNotClose += 1
             elif smallUser.close4 == "somewhat close":
+                smallUser.somewhatCloseFriends.append(smallUser.friend4)
                 smallSomewhat += 1
             elif smallUser.close4 == "very close":
+                smallUser.closeFriends.append(smallUser.friend4)
                 smallClose += 1
         if smallUser.friend5 != "null":
             if smallUser.close5 == "not close":
                 smallNotClose += 1
             elif smallUser.close5 == "somewhat close":
+                smallUser.somewhatCloseFriends.append(smallUser.friend5)
                 smallSomewhat += 1
             elif smallUser.close5 == "very close":
+                smallUser.closeFriends.append(smallUser.friend5)
                 smallClose += 1
         if smallUser.friend6 != "null":
             if smallUser.close6 == "not close":
                 smallNotClose += 1
             elif smallUser.close6 == "somewhat close":
+                smallUser.somewhatCloseFriends.append(smallUser.friend6)
                 smallSomewhat += 1
             elif smallUser.close6 == "very close":
+                smallUser.closeFriends.append(smallUser.friend6)
                 smallClose += 1
 
-    print "Among the good data from Timepoint 2 we found:\n"
+    print "Among all of the data from Timepoint 2 we found:\n"
     print "Number of Not Close Users in the Lattice Network:",
     print lattNotClose
     print "Number of Somewhat Close Users in the Lattice Network:",
@@ -769,10 +810,28 @@ def tallyCloseness():
     print smallClose
 
 #main
-setFriends()
+setFriends(3)
 setDemographics()
-setSimilarities()
+setSimilarities(3)
 tallyCloseness()
+#print somewhat close and very close friend pairs
+for lattUser in usersLattice:
+    if len(lattUser.somewhatCloseFriends) > 0 or len(lattUser.closeFriends) > 0:
+        print "User: " + lattUser.username
+        print "Somewhat close friends: ",
+        print lattUser.somewhatCloseFriends
+        print "Close Friends: ",
+        print lattUser.closeFriends
+        print "\n\n"
+
+for smallUser in usersSmall:
+    if len(smallUser.somewhatCloseFriends) > 0 or len(smallUser.closeFriends) > 0:
+        print "User: " + smallUser.username
+        print "Somewhat close friends: ",
+        print smallUser.somewhatCloseFriends
+        print "Close Friends: ",
+        print smallUser.closeFriends
+        print "\n\n"
 #print usersLattice[0].username
 #print usersLattice[0].female
 #print usersLattice[52].username
