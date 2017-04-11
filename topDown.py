@@ -1,8 +1,11 @@
 #Top Down approach to homophily
 #Wilson Rhodes & Timothy Tran
 
+#todo, check small world similarity data
 
 import csv
+
+allUsersDemographics = []
 
 usersLattice2 = []
 usersSmall2 = []
@@ -161,6 +164,54 @@ class user:
             print currFriend.sameCurrentSmoker
             print currFriend.sameExSmoker
 
+class skeletonUser:
+    def __init__(self, username):
+        self.username = username
+
+        self.age = 0
+        self.male = 0
+        self.female = 0
+        self.other = 0
+
+        self.primarySub = ""
+        self.primAlcohol = 0
+        self.primCannabis = 0
+        self.primCocaine = 0
+        self.primOpiods = 0
+        self.primPainRel = 0
+        self.primStimulants = 0
+        self.primTranq = 0
+        self.primDiss = 0
+
+        self.secondarySub = ""
+        self.secAlcohol = 0
+        self.secCannabis = 0
+        self.secCocaine = 0
+        self.secOpiods = 0
+        self.secPainRel = 0
+        self.secStimulants = 0
+        self.secTranq = 0
+        self.secNico = 0
+        self.other = 0
+
+        self.someHighSchool = 0
+        self.highSchool = 0
+        self.someCollege = 0
+        self.Associates = 0
+        self.Bachelors = 0
+        self.Masters = 0
+        self.Doctoral = 0
+
+        self.lessThan30 = 0
+        self.thirtyTo50 = 0
+        self.fiftyTo70 = 0
+        self.seventyTo90 = 0
+        self.ninetyTo150 = 0
+        self.greaterThan150 = 0
+        self.preferNotToAns = 0
+
+        self.currentSmoker = 0
+        self.exSmoker = 0
 
 def setFriends(timepoint):
     if timepoint == 2:
@@ -194,6 +245,57 @@ def setDemographics():
         reader = csv.DictReader(csvfile, delimiter=',')
         for row in reader:
 
+            #add to full demo table for comparisons
+            demoUser = skeletonUser(row["ID"])
+
+            demoUser.age = int(row["Age"])
+            demoUser.male = int(row["Male"])
+            demoUser.female = int(row["Female"])
+            demoUser.other = int(row["Other"])
+
+            demoUser.primarySub = row["Primary Sub. Add."]
+            demoUser.primAlcohol = int(row["Alcohol"])
+            demoUser.primCannabis = int(row["Cannabis"])
+            demoUser.primCocaine = int(row["Cocaine"])
+            demoUser.primOpiods = int(row["Opiods"])
+            demoUser.primPainRel = int(row["Presc. Pain Relivers"])
+            demoUser.primStimulants = int(row["Stimulants"])
+            demoUser.primTranq = int(row["Traq/Depres."])
+            demoUser.primDiss = int(row["Dissociatives"])
+
+            demoUser.secondarySub = row["Secondary Sub. Add."]
+            demoUser.secAlcohol = int(row["SAlcohol"])
+            demoUser.secCannabis = int(row["SCannabis"])
+            demoUser.secCocaine = int(row["SCocaine"])
+            demoUser.secOpiods = int(row["SOpiods"])
+            demoUser.secPainRel = int(row["SPresc. Pain Relivers"])
+            demoUser.secStimulants = int(row["SStimulants"])
+            demoUser.secTranq = int(row["STraq/Depres."])
+            demoUser.secNico = int(row["SNicotine"])
+            demoUser.other = int(row["Other (non-subs)"])
+
+            demoUser.someHighSchool = int(row["Some High School"])
+            demoUser.highSchool = int(row["High school diploma or equivalency"])
+            demoUser.someCollege = int(row["Some College"])
+            demoUser.Associates = int(row["Associates Deg."])
+            demoUser.Bachelors = int(row["Bach. Deg."])
+            demoUser.Masters = int(row["Mast. Deg."])
+            demoUser.Doctoral = int(row["Doc. Deg."])
+
+            demoUser.lessThan30 = int(row["Less than $30,000"])
+            demoUser.thirtyTo50 = int(row["$30,000 - $49,999"])
+            demoUser.fiftyTo70 = int(row["$50,000 - $69,999"])
+            demoUser.seventTo90 = int(row["$70,000 - $89,999"])
+            demoUser.ninetyTo150 = int(row["$90,000 - $149,999"])
+            demoUser.greaterThan150 = int(row["$150,000 and above"])
+            demoUser.preferNotToAns = int(row["Prefer Not to Answer"])
+
+            demoUser.currentSmoker = int(row["Current Smoker"])
+            demoUser.exSmoker = int(row["Ex-Smoker"])
+
+            allUsersDemographics.append(demoUser)
+
+            #add to table that contains usable data
             foundUser = False
             for checkUser in usersLattice:
                 if row["ID"] == checkUser.username:
@@ -252,6 +354,53 @@ def setDemographics():
     with open('DemoSmall.csv') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',')
         for row in reader:
+            #add to full demo table for comparisons
+            demoUser = skeletonUser(row["ID"])
+
+            demoUser.age = int(row["Age"])
+            demoUser.male = int(row["Male"])
+            demoUser.female = int(row["Female"])
+            demoUser.other = int(row["Other"])
+
+            demoUser.primarySub = row["Primary Sub. Add."]
+            demoUser.primAlcohol = int(row["Alcohol"])
+            demoUser.primCannabis = int(row["Cannabis"])
+            demoUser.primCocaine = int(row["Cocaine"])
+            demoUser.primOpiods = int(row["Opiods"])
+            demoUser.primPainRel = int(row["Presc. Pain Relivers"])
+            demoUser.primStimulants = int(row["Stimulants"])
+
+            demoUser.secondarySub = row["Secondary Sub. Add."]
+            demoUser.secAlcohol = int(row["SAlcohol"])
+            demoUser.secCannabis = int(row["SCannabis"])
+            demoUser.secCocaine = int(row["SCocaine"])
+            demoUser.secOpiods = int(row["SOpiods"])
+            demoUser.secPainRel = int(row["SPresc. Pain Relivers"])
+            demoUser.secStimulants = int(row["SStimulants"])
+            demoUser.secTranq = int(row["STraq/Depres."])
+            demoUser.secNico = int(row["SNicotine"])
+            demoUser.other = int(row["Other (non-subs)"])
+
+            demoUser.someHighSchool = int(row["Some High School"])
+            demoUser.highSchool = int(row["High school diploma or equivalency"])
+            demoUser.someCollege = int(row["Some College"])
+            demoUser.Associates = int(row["Associates Deg."])
+            demoUser.Bachelors = int(row["Bach. Deg."])
+            demoUser.Masters = int(row["Mast. Deg."])
+            demoUser.Doctoral = int(row["Doc. Deg."])
+
+            demoUser.lessThan30 = int(row["Less than $30,000"])
+            demoUser.thirtyTo50 = int(row["$30,000 - $49,999"])
+            demoUser.fiftyTo70 = int(row["$50,000 - $69,999"])
+            demoUser.seventTo90 = int(row["$70,000 - $89,999"])
+            demoUser.ninetyTo150 = int(row["$90,000 - $149,999"])
+            demoUser.greaterThan150 = int(row["$150,000 and above"])
+            demoUser.preferNotToAns = int(row["Prefer Not to Answer"])
+
+            demoUser.currentSmoker = int(row["Current Smoker"])
+            demoUser.exSmoker = int(row["Ex-Smoker"])
+
+            allUsersDemographics.append(demoUser)
 
             foundUser = False
             for checkUser in usersSmall:
@@ -315,13 +464,13 @@ def setSimilarities():
             if eachFriend.username != "null" and eachFriend.username != "unull":
                 compareName = eachFriend.username
                 compareUser = currUser
-                for findFriend in usersLattice:
+                for findFriend in allUsersDemographics:
                     if findFriend.username == compareName:
                         compareUser = findFriend
                         break
                 #check this line
                 if compareUser != currUser:
-                    compareTwoUsers(currUser, compareUser, 1)
+                    compareTwoUsers(currUser, compareUser, friendCount)
             friendCount += 1
 
     for currUser in usersSmall:
@@ -330,7 +479,7 @@ def setSimilarities():
             if eachFriend.username != "null" and eachFriend.username != "unull":
                 compareName = eachFriend.username
                 compareUser = currUser
-                for findFriend in usersSmall:
+                for findFriend in allUsersDemographics:
                     if findFriend.username == compareName:
                         compareUser = findFriend
                         break
@@ -344,7 +493,7 @@ def compareTwoUsers(user1, user2, friendNumber):
     if ageDifference >= -4 and ageDifference <= 4:
         user1.friends[friendNumber].similarAge = True
 
-    if user1.male == 1 and user2.male == 1 or user1.female == 1 and user2.female == 1:
+    if (user1.male == 1 and user2.male == 1) or (user1.female == 1 and user2.female == 1):
         user1.friends[friendNumber].sameGender = True
 
     #check primary substance
@@ -416,6 +565,7 @@ def tallyCloseness():
     print smallSomewhat
     print "Number of Very Close Users in the Small World Network:",
     print smallClose
+    print "\n\n"
 
 #combines the two users into the user1 object
 #used to combine the timepoint data
@@ -479,6 +629,137 @@ def orderList(list):
             if int(parsedUsername1) > int(parsedUsername2):
                 list[j], list[j+1] = list[j+1], list[j]
 
+def createStatistics():
+    numSimilarAge = 0
+    numSameGender = 0
+    numSamePrimary = 0
+    numSameSecondary = 0
+    numSameEducation = 0
+    numSameIncome = 0
+    numSameCurrentSmoker = 0
+    numSameExSmoker = 0
+
+    for lattUser in usersLattice:
+        for eachFriend in lattUser.somewhatCloseFriends:
+            if eachFriend.similarAge == True:
+                numSimilarAge += 1
+            if eachFriend.sameGender == True:
+                numSameGender += 1
+            if eachFriend.samePrimarySub == True:
+                numSamePrimary += 1
+            if eachFriend.sameSecondarySub == True:
+                numSameSecondary += 1
+            if eachFriend.sameEducation == True:
+                numSameEducation += 1
+            if eachFriend.sameIncome == True:
+                numSameIncome += 1
+            if eachFriend.sameCurrentSmoker == True:
+                numSameCurrentSmoker += 1
+            if eachFriend.sameExSmoker == True:
+                numSameExSmoker += 1
+
+        for eachFriend in lattUser.closeFriends:
+            if eachFriend.similarAge == True:
+                numSimilarAge += 1
+            if eachFriend.sameGender == True:
+                numSameGender += 1
+            if eachFriend.samePrimarySub == True:
+                numSamePrimary += 1
+            if eachFriend.sameSecondarySub == True:
+                numSameSecondary += 1
+            if eachFriend.sameEducation == True:
+                numSameEducation += 1
+            if eachFriend.sameIncome == True:
+                numSameIncome += 1
+            if eachFriend.sameCurrentSmoker == True:
+                numSameCurrentSmoker += 1
+            if eachFriend.sameExSmoker == True:
+                numSameExSmoker += 1
+
+    print "Lattice Network Statistics"
+    print "-------------------------------------------------"
+    print "Number with a similar age:",
+    print numSimilarAge
+    print "Number with the same gender:",
+    print numSameGender
+    print "Number with the same primary addiction:",
+    print numSamePrimary
+    print "Number with the same secondary addiction:",
+    print numSameSecondary
+    print "Number with the same education level:",
+    print numSameEducation
+    print "Number with the same income level:",
+    print numSameIncome
+    print "Number that were both current smokers:",
+    print numSameCurrentSmoker
+    print "Number that were both ex smokers:",
+    print numSameExSmoker
+    print "\n"
+
+    numSimilarAge2 = 0
+    numSameGender2 = 0
+    numSamePrimary2 = 0
+    numSameSecondary2 = 0
+    numSameEducation2 = 0
+    numSameIncome2 = 0
+    numSameCurrentSmoker2 = 0
+    numSameExSmoker2 = 0
+
+    for smallUser in usersSmall:
+        for eachFriend in smallUser.somewhatCloseFriends:
+            if eachFriend.similarAge == True:
+                numSimilarAge2 += 1
+            if eachFriend.sameGender == True:
+                numSameGender2 += 1
+            if eachFriend.samePrimarySub == True:
+                numSamePrimary2 += 1
+            if eachFriend.sameSecondarySub == True:
+                numSameSecondary2 += 1
+            if eachFriend.sameEducation == True:
+                numSameEducation2 += 1
+            if eachFriend.sameIncome == True:
+                numSameIncome2 += 1
+            if eachFriend.sameCurrentSmoker == True:
+                numSameCurrentSmoker2 += 1
+            if eachFriend.sameExSmoker == True:
+                numSameExSmoker2 += 1
+
+        for eachFriend in smallUser.closeFriends:
+            if eachFriend.similarAge == True:
+                numSimilarAge2 += 1
+            if eachFriend.sameGender == True:
+                numSameGender2 += 1
+            if eachFriend.samePrimarySub == True:
+                numSamePrimary2 += 1
+            if eachFriend.sameSecondarySub == True:
+                numSameSecondary2 += 1
+            if eachFriend.sameEducation == True:
+                numSameEducation2 += 1
+            if eachFriend.sameIncome == True:
+                numSameIncome2 += 1
+            if eachFriend.sameCurrentSmoker == True:
+                numSameCurrentSmoker2 += 1
+            if eachFriend.sameExSmoker == True:
+                numSameExSmoker2 += 1
+
+    print "Small World Network Statistics"
+    print "-------------------------------------------------"
+    print "Number with a similar age:",
+    print numSimilarAge2
+    print "Number with the same gender:",
+    print numSameGender2
+    print "Number with the same primary addiction:",
+    print numSamePrimary2
+    print "Number with the same secondary addiction:",
+    print numSameSecondary2
+    print "Number with the same education level:",
+    print numSameEducation2
+    print "Number with the same income level:",
+    print numSameIncome2
+    print "Number that were both current smokers:",
+    print numSameCurrentSmoker2
+    print "Number that were both ex smokers:",
+    print numSameExSmoker2
 
 #main
 setFriends(2)
@@ -491,4 +772,7 @@ tallyCloseness()
 
 orderList(usersLattice)
 orderList(usersSmall)
-printAllFriends()
+orderList(allUsersDemographics)
+#printAllFriends()
+
+createStatistics()
