@@ -345,7 +345,6 @@ def setDemographics():
             currentUser.currentSmoker = int(row["Current Smoker"])
             currentUser.exSmoker = int(row["Ex-Smoker"])
 
-            #currentUser.printDemographics()
     with open('DemoSmall.csv') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',')
         for row in reader:
@@ -809,11 +808,13 @@ def tallyCloseness():
     print "Number of Very Close Users in the Small World Network:",
     print smallClose
 
+
 #main
 setFriends(3)
 setDemographics()
 setSimilarities(3)
 tallyCloseness()
+
 #print somewhat close and very close friend pairs
 for lattUser in usersLattice:
     if len(lattUser.somewhatCloseFriends) > 0 or len(lattUser.closeFriends) > 0:
