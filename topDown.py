@@ -185,9 +185,9 @@ def setFriends(timepoint):
                 parsedUsername = parsedUsername[1:]
                 currentUser.setCloseness(row["How close to you feel to Buddy 1"], row["How close to you feel to Buddy 2"], row["How close to you feel to Buddy 3"], row["How close to you feel to Buddy 4"], row["How close to you feel to Buddy 5"], row["How close to you feel to Buddy 6"])
                 if int(parsedUsername) <= 4128:
-                    usersLattice.append(currentUser)
+                    usersLattice3.append(currentUser)
                 else:
-                    usersSmall.append(currentUser)
+                    usersSmall3.append(currentUser)
 
 def setDemographics():
     with open('DemoLattice.csv') as csvfile:
@@ -306,8 +306,8 @@ def setDemographics():
             currentUser.currentSmoker = int(row["Current Smoker"])
             currentUser.exSmoker = int(row["Ex-Smoker"])
 
-#this method needs work to work with both timepoints, will throw errors on timepoint 3 data b/c of formatting differences
-def setSimilarities(timepoint):
+
+def setSimilarities():
     #for each user
     for currUser in usersLattice:
         friendCount = 0
@@ -319,7 +319,9 @@ def setSimilarities(timepoint):
                     if findFriend.username == compareName:
                         compareUser = findFriend
                         break
-                compareTwoUsers(currUser, compareUser, 1)
+                #check this line
+                if compareUser != currUser:
+                    compareTwoUsers(currUser, compareUser, 1)
             friendCount += 1
 
     for currUser in usersSmall:
@@ -332,7 +334,8 @@ def setSimilarities(timepoint):
                     if findFriend.username == compareName:
                         compareUser = findFriend
                         break
-                compareTwoUsers(currUser, compareUser, friendCount)
+                if compareUser != currUser:
+                    compareTwoUsers(currUser, compareUser, friendCount)
             friendCount += 1
 
 def compareTwoUsers(user1, user2, friendNumber):
@@ -399,7 +402,7 @@ def tallyCloseness():
                     smallUser.closeFriends.append(currFriend)
                     smallClose += 1
 
-    print "Among all of the data from Timepoint 2 we found:\n"
+    print "Among all of the data from both Timepoints we found:\n"
     print "Number of Not Close Users in the Lattice Network:",
     print lattNotClose
     print "Number of Somewhat Close Users in the Lattice Network:",
@@ -417,45 +420,75 @@ def tallyCloseness():
 #combines the two users into the user1 object
 #used to combine the timepoint data
 #ideally this method is called on two users with the same name
-def combineTwoUsers(user1, user2):
-    print "topKek"
-
-#main
-#setFriends(2)
-#setDemographics()
-#setSimilarities(2)
-#tallyCloseness()
-
-setFriends(3)
-setDemographics()
-setSimilarities(3)
-tallyCloseness()
+def combineLists(list1, list2):
+    for list2User in list2:
+        foundMatchUser = False
+        for list1User in list1:
+            if list1User.username == list2User.username:
+                foundMatchUser = True
+                for list2Friends in list2User.friends:
+                    foundMatchFriend = False
+                    if list2Friends.username == "null" or list2Friends.username == "unull":
+                        continue
+                    for list1Friends in list1User.friends:
+                        if list1Friends.username == "null" or list1Friends.username == "unull":
+                            continue
+                        elif list1Friends.username == list2Friends.username:
+                            #if they were close in t3 but not t2 change the closeness to what it is in t3
+                            if list1Friends.close == "not close" and list2Friends.close != "not close":
+                                list1Friends.close = list2Friends.close
+                            foundMatchFriend = True
+                    if not foundMatchFriend:
+                        list1User.friends.append(list2Friends)
+        if not foundMatchUser:
+            list1.append(list2User)
+    return list1
 
 #print somewhat close and very close friend pairs
-for lattUser in usersLattice:
-    if len(lattUser.somewhatCloseFriends) > 0 or len(lattUser.closeFriends) > 0:
-        print "User: " + lattUser.username
-        print "Somewhat close friends: ",
-        for currFriend in lattUser.somewhatCloseFriends:
-            print currFriend.username
-        print "Close Friends: ",
-        for currFriend in lattUser.closeFriends:
-            print currFriend.username
-        print "\n\n"
+def printAllFriends():
+    for lattUser in usersLattice:
+        if len(lattUser.somewhatCloseFriends) > 0 or len(lattUser.closeFriends) > 0:
+            print "User: " + lattUser.username
+            print "Somewhat close friends: ",
+            for currFriend in lattUser.somewhatCloseFriends:
+                print currFriend.username,
+            print ""
+            print "Close Friends: ",
+            for currFriend in lattUser.closeFriends:
+                print currFriend.username
+            print "\n\n"
 
-for smallUser in usersSmall:
-    if len(smallUser.somewhatCloseFriends) > 0 or len(smallUser.closeFriends) > 0:
-        print "User: " + smallUser.username
-        print "Somewhat close friends: ",
-        for currFriend in smallUser.somewhatCloseFriends:
-            print currFriend.username
-        print "Close Friends: ",
-        for currFriend in smallUser.closeFriends:
-            print currFriend.username
-        print "\n\n"
-#print usersLattice[0].username
-#print usersLattice[0].female
-#print usersLattice[52].username
-#print usersLattice[52].female
-#for user in usersLattice:
-#    user.printFriends()
+    for smallUser in usersSmall:
+        if len(smallUser.somewhatCloseFriends) > 0 or len(smallUser.closeFriends) > 0:
+            print "User: " + smallUser.username
+            print "Somewhat close friends: ",
+            for currFriend in smallUser.somewhatCloseFriends:
+                print currFriend.username,
+            print ""
+            print "Close Friends: ",
+            for currFriend in smallUser.closeFriends:
+                print currFriend.username
+            print "\n\n"
+
+#simple bubble sort
+def orderList(list):
+    for i in range(len(list)):
+        for j in range(len(list)-1-i):
+            parsedUsername1 = list[j].username[1:]
+            parsedUsername2 = list[j+1].username[1:]
+            if int(parsedUsername1) > int(parsedUsername2):
+                list[j], list[j+1] = list[j+1], list[j]
+
+
+#main
+setFriends(2)
+setFriends(3)
+usersLattice = combineLists(usersLattice2, usersLattice3)
+usersSmall = combineLists(usersSmall2, usersSmall3)
+setDemographics()
+setSimilarities()
+tallyCloseness()
+
+orderList(usersLattice)
+orderList(usersSmall)
+printAllFriends()

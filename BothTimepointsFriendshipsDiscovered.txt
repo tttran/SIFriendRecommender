@@ -1,0 +1,226 @@
+Among all of the data from both Timepoints we found:
+
+Number of Not Close Users in the Lattice Network: 532
+Number of Somewhat Close Users in the Lattice Network: 41
+Number of Very Close Users in the Lattice Network: 3
+
+Lattice Network Friendships
+--------------------------------------------------------------------
+User: u4001
+Somewhat close friends:  u4127
+Close Friends:
+
+
+User: u4004
+Somewhat close friends:
+Close Friends:  u4001
+
+
+
+User: u4008
+Somewhat close friends:  u4006
+Close Friends:
+
+
+User: u4009
+Somewhat close friends:  u4006 u4007
+Close Friends:
+
+
+User: u4014
+Somewhat close friends:  u4015
+Close Friends:
+
+
+User: u4015
+Somewhat close friends:  u4017
+Close Friends:
+
+
+User: u4020
+Somewhat close friends:  u4017 u4022
+Close Friends:
+
+
+User: u4021
+Somewhat close friends:  u4020
+Close Friends:
+
+
+User: u4026
+Somewhat close friends:  u4023 u4024 u4027
+Close Friends:  u4029
+
+
+
+User: u4037
+Somewhat close friends:  u4036 u4036 u4038
+Close Friends:
+
+
+User: u4046
+Somewhat close friends:  u4044 u4048
+Close Friends:
+
+
+User: u4051
+Somewhat close friends:  u4052
+Close Friends:
+
+
+User: u4057
+Somewhat close friends:  u4058 u4059 u4060
+Close Friends:
+
+
+User: u4058
+Somewhat close friends:  u4057
+Close Friends:
+
+
+User: u4059
+Somewhat close friends:
+Close Friends:  u4057
+
+
+
+User: u4061
+Somewhat close friends:  u4064
+Close Friends:
+
+
+User: u4062
+Somewhat close friends:  u4060 u4063
+Close Friends:
+
+
+User: u4068
+Somewhat close friends:  u4066 u4067 u4069 u4070 u4071
+Close Friends:
+
+
+User: u4072
+Somewhat close friends:  u4069 u4070 u4071 u4073 u4075 u4072
+Close Friends:
+
+
+User: u4104
+Somewhat close friends:  u4107
+Close Friends:
+
+
+User: u4109
+Somewhat close friends:  u4112 u4107
+Close Friends:
+
+
+User: u4126
+Somewhat close friends:  u4127
+Close Friends:
+
+
+User: u4127
+Somewhat close friends:  u4001
+Close Friends:
+
+--------------------------------------------------------------------
+Among all of the data from both Timepoints we found:
+
+Number of Not Close Users in the Small World Network: 550
+Number of Somewhat Close Users in the Small World Network: 30
+Number of Very Close Users in the Small World Network: 3
+
+Small World Friendships
+--------------------------------------------------------------------
+
+User: u4135
+Somewhat close friends:
+Close Friends:  u4205
+
+
+
+User: u4137
+Somewhat close friends:  u4193 u4215
+Close Friends:
+
+
+User: u4139
+Somewhat close friends:  u4137 u4170 u4182
+Close Friends:
+
+
+User: u4140
+Somewhat close friends:  u4234
+Close Friends:
+
+
+User: u4155
+Somewhat close friends:
+Close Friends:  u4151
+
+
+
+User: u4163
+Somewhat close friends:  u4174
+Close Friends:
+
+
+User: u4164
+Somewhat close friends:  u4137 u4237
+Close Friends:
+
+
+User: u4182
+Somewhat close friends:  u4139
+Close Friends:
+
+
+User: u4193
+Somewhat close friends:  u4137 u4182
+Close Friends:
+
+
+User: u4203
+Somewhat close friends:  u4174
+Close Friends:
+
+
+User: u4207
+Somewhat close friends:  u4204
+Close Friends:
+
+
+User: u4215
+Somewhat close friends:  u4137 u4237
+Close Friends:
+
+
+User: u4217
+Somewhat close friends:  u4140
+Close Friends:
+
+
+User: u4221
+Somewhat close friends:  u4209
+Close Friends:
+
+
+User: u4228
+Somewhat close friends:  u4229 u4325 u4224 u4235
+Close Friends:
+
+
+User: u4236
+Somewhat close friends:  u4200 u4212 u4157 u4227 u4181
+Close Friends:
+
+
+User: u4245
+Somewhat close friends:
+Close Friends:  u4190
+
+
+
+User: u4246
+Somewhat close friends:  u4138 u4161 u4183
+Close Friends:
