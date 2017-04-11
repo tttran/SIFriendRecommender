@@ -1,0 +1,52 @@
+Among all of the data from both Timepoints we found:
+
+Number of Not Close Users in the Lattice Network: 532
+Number of Somewhat Close Users in the Lattice Network: 41
+Number of Very Close Users in the Lattice Network: 3
+
+
+Number of Not Close Users in the Small World Network: 550
+Number of Somewhat Close Users in the Small World Network: 30
+Number of Very Close Users in the Small World Network: 3
+
+
+Number of Not Close Users in both networks: 1082
+Number of Somewhat Close Users in both networks: 71
+Number of Very Close Users in both networks: 6
+
+
+
+Lattice Network Statistics, 44 total relationships
+-------------------------------------------------
+Number with a similar age: 10
+Number with the same gender: 21
+Number with the same primary addiction: 12
+Number with the same secondary addiction: 4
+Number with the same education level: 9
+Number with the same income level: 15
+Number that were both current smokers: 6
+Number that were both ex smokers: 13
+
+
+Small World Network Statistics, 33 total relationships
+-------------------------------------------------
+Number with a similar age: 6
+Number with the same gender: 14
+Number with the same primary addiction: 12
+Number with the same secondary addiction: 6
+Number with the same education level: 2
+Number with the same income level: 11
+Number that were both current smokers: 7
+Number that were both ex smokers: 5
+
+
+Combined Statistics, 77 total relationships
+-------------------------------------------------
+Number with a similar age: 16
+Number with the same gender: 35
+Number with the same primary addiction: 24
+Number with the same secondary addiction: 10
+Number with the same education level: 11
+Number with the same income level: 26
+Number that were both current smokers: 13
+Number that were both ex smokers: 18

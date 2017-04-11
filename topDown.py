@@ -565,6 +565,13 @@ def tallyCloseness():
     print smallSomewhat
     print "Number of Very Close Users in the Small World Network:",
     print smallClose
+    print "\n"
+    print "Number of Not Close Users in both networks:",
+    print smallNotClose + lattNotClose
+    print "Number of Somewhat Close Users in both networks:",
+    print smallSomewhat + lattSomewhat
+    print "Number of Very Close Users in both networks:",
+    print smallClose + lattClose
     print "\n\n"
 
 #combines the two users into the user1 object
@@ -676,7 +683,7 @@ def createStatistics():
             if eachFriend.sameExSmoker == True:
                 numSameExSmoker += 1
 
-    print "Lattice Network Statistics"
+    print "Lattice Network Statistics, 44 total relationships"
     print "-------------------------------------------------"
     print "Number with a similar age:",
     print numSimilarAge
@@ -742,7 +749,7 @@ def createStatistics():
             if eachFriend.sameExSmoker == True:
                 numSameExSmoker2 += 1
 
-    print "Small World Network Statistics"
+    print "Small World Network Statistics, 33 total relationships"
     print "-------------------------------------------------"
     print "Number with a similar age:",
     print numSimilarAge2
@@ -760,6 +767,26 @@ def createStatistics():
     print numSameCurrentSmoker2
     print "Number that were both ex smokers:",
     print numSameExSmoker2
+    print "\n"
+
+    print "Combined Statistics, 77 total relationships"
+    print "-------------------------------------------------"
+    print "Number with a similar age:",
+    print numSimilarAge + numSimilarAge2
+    print "Number with the same gender:",
+    print numSameGender + numSameGender2
+    print "Number with the same primary addiction:",
+    print numSamePrimary + numSamePrimary2
+    print "Number with the same secondary addiction:",
+    print numSameSecondary + numSameSecondary2
+    print "Number with the same education level:",
+    print numSameEducation + numSameEducation2
+    print "Number with the same income level:",
+    print numSameIncome + numSameIncome2
+    print "Number that were both current smokers:",
+    print numSameCurrentSmoker + numSameCurrentSmoker2
+    print "Number that were both ex smokers:",
+    print numSameExSmoker + numSameExSmoker2
 
 #main
 setFriends(2)
