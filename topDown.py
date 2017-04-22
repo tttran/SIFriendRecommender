@@ -1,21 +1,32 @@
 #Top Down approach to homophily
-#Wilson Rhodes & Timothy Tran
+#Wilson Rhodes
 
-#todo, check small world similarity data
+#sorry Matt code is a little ugly
 
 import csv
 
+#this list holds the skeletonUser objects
 allUsersDemographics = []
 
+#these lists are used for t2 is we are doing both timepoints
 usersLattice2 = []
 usersSmall2 = []
 
+#these lists are used for t3 is we are doing both timepoints
 usersLattice3 = []
 usersSmall3 = []
 
+#these are the defualt lists that all of the methods use
+#if we are using both timepoints, the above four lists are combined into
+#these lists. See my note above the setFriends method for more info
 usersLattice = []
 usersSmall = []
 
+#when a user lists another user as a close friend, the username pair is put
+#into this list with the user that listed the other user first
+oneWayFriendships = []
+
+#class that stores the username of a friend and their demographics
 class friend:
     def __init__(self, usrnme):
         self.username = usrnme
@@ -29,6 +40,7 @@ class friend:
         self.sameExSmoker = False
         self.closeToUser = ""
 
+#main class, stores a users friends and demographics
 class user:
     def __init__(self, username, friend1, friend2, friend3, friend4, friend5, friend6):
         self.username = username
@@ -88,6 +100,7 @@ class user:
         self.currentSmoker = 0
         self.exSmoker = 0
 
+    #easy method to see the closeness of their friends to what we read from the csv
     def setCloseness(self, howClose1, howClose2, howClose3, howClose4, howClose5, howClose6):
         self.friends[0].close = howClose1
         self.friends[1].close = howClose2
@@ -164,6 +177,11 @@ class user:
             print currFriend.sameCurrentSmoker
             print currFriend.sameExSmoker
 
+#this class is used for user comparisons
+#some users are not in the survey but were listed as a friends and in this case
+#we can't directly compare users because they don't have a user object
+#this class circumvents that by creating a skeletonUser object that contains
+#all users even if they weren't in the survey for comparison
 class skeletonUser:
     def __init__(self, username):
         self.username = username
@@ -213,6 +231,14 @@ class skeletonUser:
         self.currentSmoker = 0
         self.exSmoker = 0
 
+#if using both timepoints put t2 data in usersLattice2 and usersSmall2
+#and t3 data in usersLattice3 and usersSmall3
+#then call the combine timepoints method
+#if only using one timepoint put the data from that timepoint into
+#usersLattice and usersSmall and don't call the combine method
+
+#currently set up to only user t3 data
+#creates all of the user objects for use later from the csvs
 def setFriends(timepoint):
     if timepoint == 2:
         with open('Timepoint2AllData.csv') as csvfile:
@@ -236,10 +262,12 @@ def setFriends(timepoint):
                 parsedUsername = parsedUsername[1:]
                 currentUser.setCloseness(row["How close to you feel to Buddy 1"], row["How close to you feel to Buddy 2"], row["How close to you feel to Buddy 3"], row["How close to you feel to Buddy 4"], row["How close to you feel to Buddy 5"], row["How close to you feel to Buddy 6"])
                 if int(parsedUsername) <= 4128:
-                    usersLattice3.append(currentUser)
+                    usersLattice.append(currentUser)
                 else:
-                    usersSmall3.append(currentUser)
+                    usersSmall.append(currentUser)
 
+#creates all of the skeleton user objects for demographic comparison
+#also updates the user objects with their demographics
 def setDemographics():
     with open('DemoLattice.csv') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',')
@@ -455,7 +483,8 @@ def setDemographics():
             currentUser.currentSmoker = int(row["Current Smoker"])
             currentUser.exSmoker = int(row["Ex-Smoker"])
 
-
+#sets the similarity characteristics for all users and their friends
+#ex "sameIncome" would be set to True
 def setSimilarities():
     #for each user
     for currUser in usersLattice:
@@ -487,6 +516,8 @@ def setSimilarities():
                     compareTwoUsers(currUser, compareUser, friendCount)
             friendCount += 1
 
+#this method does the heavy lifting for set similarities
+#this is the method that actually does the comparing between users
 def compareTwoUsers(user1, user2, friendNumber):
     #check if ages are +- 4
     ageDifference = int(user1.age) - int(user2.age)
@@ -520,6 +551,8 @@ def compareTwoUsers(user1, user2, friendNumber):
     if user1.exSmoker == 1 and user2.exSmoker == 1:
         user1.friends[friendNumber].sameExSmoker = True
 
+#this method gets the number of not close, somewhat close, and very close friends for all usersLattice
+#then adds them together and outputs the total numbers
 def tallyCloseness():
     lattNotClose = 0
     lattSomewhat = 0
@@ -531,9 +564,11 @@ def tallyCloseness():
                     lattNotClose += 1
                 elif currFriend.close == "somewhat close":
                     lattUser.somewhatCloseFriends.append(currFriend)
+                    oneWayFriendships.append((lattUser.username, currFriend.username))
                     lattSomewhat += 1
                 elif currFriend.close == "very close":
                     lattUser.closeFriends.append(currFriend)
+                    oneWayFriendships.append((lattUser.username, currFriend.username))
                     lattClose += 1
 
     smallNotClose = 0
@@ -546,12 +581,14 @@ def tallyCloseness():
                     smallNotClose += 1
                 elif currFriend.close == "somewhat close":
                     smallUser.somewhatCloseFriends.append(currFriend)
+                    oneWayFriendships.append((smallUser.username, currFriend.username))
                     smallSomewhat += 1
                 elif currFriend.close == "very close":
                     smallUser.closeFriends.append(currFriend)
+                    oneWayFriendships.append((smallUser.username, currFriend.username))
                     smallClose += 1
 
-    print "Among all of the data from both Timepoints we found:\n"
+    print "Among all of the data from Timepoint 3 we found:\n"
     print "Number of Not Close Users in the Lattice Network:",
     print lattNotClose
     print "Number of Somewhat Close Users in the Lattice Network:",
@@ -577,6 +614,7 @@ def tallyCloseness():
 #combines the two users into the user1 object
 #used to combine the timepoint data
 #ideally this method is called on two users with the same name
+#this method is currently useless because we are only using t3 data
 def combineLists(list1, list2):
     for list2User in list2:
         foundMatchUser = False
@@ -602,6 +640,7 @@ def combineLists(list1, list2):
     return list1
 
 #print somewhat close and very close friend pairs
+#used for debugging, can be useful though, not currently called anywhere
 def printAllFriends():
     for lattUser in usersLattice:
         if len(lattUser.somewhatCloseFriends) > 0 or len(lattUser.closeFriends) > 0:
@@ -636,6 +675,8 @@ def orderList(list):
             if int(parsedUsername1) > int(parsedUsername2):
                 list[j], list[j+1] = list[j+1], list[j]
 
+#prints the statistics of similarity for all users
+#totals them up and prints the number of similarities between close friends
 def createStatistics():
     numSimilarAge = 0
     numSameGender = 0
@@ -683,7 +724,7 @@ def createStatistics():
             if eachFriend.sameExSmoker == True:
                 numSameExSmoker += 1
 
-    print "Lattice Network Statistics, 44 total relationships"
+    print "Lattice Network Statistics, 22 total relationships"
     print "-------------------------------------------------"
     print "Number with a similar age:",
     print numSimilarAge
@@ -749,7 +790,7 @@ def createStatistics():
             if eachFriend.sameExSmoker == True:
                 numSameExSmoker2 += 1
 
-    print "Small World Network Statistics, 33 total relationships"
+    print "Small World Network Statistics, 29 total relationships"
     print "-------------------------------------------------"
     print "Number with a similar age:",
     print numSimilarAge2
@@ -769,7 +810,7 @@ def createStatistics():
     print numSameExSmoker2
     print "\n"
 
-    print "Combined Statistics, 77 total relationships"
+    print "Combined Statistics, 52 total relationships"
     print "-------------------------------------------------"
     print "Number with a similar age:",
     print numSimilarAge + numSimilarAge2
@@ -787,12 +828,54 @@ def createStatistics():
     print numSameCurrentSmoker + numSameCurrentSmoker2
     print "Number that were both ex smokers:",
     print numSameExSmoker + numSameExSmoker2
+    print "\n"
 
-#main
-setFriends(2)
+#adds up the number of entries we had to remove because the data was bad
+#does this using the csvs of bad and good friendships that Mary created
+def sumRemovedEntries():
+    sumSame = 0
+    sumDifferent = 0
+    total = 0
+    with open('same.csv') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=',')
+        for row in reader:
+            sumSame += int(row["number"])
+
+    with open('different.csv') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=',')
+        for row in reader:
+            sumDifferent += int(row["number"])
+
+    total = sumDifferent + sumSame
+    print "We had to remove",
+    print sumDifferent,
+    print "out of",
+    print total,
+    print "entries for a total of",
+    print sumSame,
+    print "good entries."
+
+#searches the list of oneWayFriendships for reciprocal friends
+#then creates a new list and prints stats about 1 and 2 way friendships
+def printTwoWayFriendships():
+    twoWayFriendships = []
+    for relationship in oneWayFriendships:
+        firstUser, secondUser = relationship
+        for relationship2 in oneWayFriendships:
+            firstUser2, secondUser2 = relationship2
+            if firstUser == secondUser2 and secondUser ==firstUser2:
+                twoWayFriendships.append((firstUser, secondUser))
+    print "The number of one-way friendships we found is",
+    print len(oneWayFriendships) - len(twoWayFriendships)
+    print "The number of two-way friendships we found is",
+    #divide by two because we counted each two way friendship twice
+    print len(twoWayFriendships)/2
+    print "For a total of",
+    print (len(oneWayFriendships) - len(twoWayFriendships) + len(twoWayFriendships)/2),
+    print "friendships"
+
+#main, actually executes the methods
 setFriends(3)
-usersLattice = combineLists(usersLattice2, usersLattice3)
-usersSmall = combineLists(usersSmall2, usersSmall3)
 setDemographics()
 setSimilarities()
 tallyCloseness()
@@ -800,6 +883,8 @@ tallyCloseness()
 orderList(usersLattice)
 orderList(usersSmall)
 orderList(allUsersDemographics)
-#printAllFriends()
 
 createStatistics()
+sumRemovedEntries()
+
+printTwoWayFriendships()
