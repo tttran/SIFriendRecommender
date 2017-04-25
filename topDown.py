@@ -1,5 +1,6 @@
 #Top Down approach to homophily
 #Wilson Rhodes
+#need to check that sameEducation is working correctly, numbers seem low
 
 #sorry Matt code is a little ugly
 
@@ -29,6 +30,9 @@ oneWayFriendships = []
 #class that stores the username of a friend and their demographics
 class friend:
     def __init__(self, usrnme):
+        #if blank set to null
+        if usrnme == "":
+            usrnme = "null"
         self.username = usrnme
         self.similarAge = False
         self.sameGender = False
@@ -38,7 +42,7 @@ class friend:
         self.sameIncome = False
         self.sameCurrentSmoker = False
         self.sameExSmoker = False
-        self.closeToUser = ""
+        self.close = ""
 
 #main class, stores a users friends and demographics
 class user:
@@ -254,13 +258,13 @@ def setFriends(timepoint):
                     usersSmall2.append(currentUser)
 
     if timepoint == 3:
-        with open('Timepoint3AllData.csv') as csvfile:
+        with open('sameClose.csv') as csvfile:
             reader = csv.DictReader(csvfile, delimiter=',')
             for row in reader:
-                currentUser = user(row["username"], "u"+row["Recovery Buddy [1]"], "u"+row["Recovery Buddy [2]"], "u"+row["Recovery Buddy [3]"], "u"+row["Recovery Buddy [4]"], "u"+row["Recovery Buddy [5]"], "u"+row["Recovery Buddy [6]"])
-                parsedUsername = row["username"]
+                currentUser = user(row["user"], row["buddy1"], row["buddy2"], row["buddy3"], row["buddy4"], row["buddy5"], row["buddy6"])
+                parsedUsername = row["user"]
                 parsedUsername = parsedUsername[1:]
-                currentUser.setCloseness(row["How close to you feel to Buddy 1"], row["How close to you feel to Buddy 2"], row["How close to you feel to Buddy 3"], row["How close to you feel to Buddy 4"], row["How close to you feel to Buddy 5"], row["How close to you feel to Buddy 6"])
+                currentUser.setCloseness(row["Closeness1"], row["Closeness2"], row["Closeness3"], row["Closeness4"], row["Closeness5"], row["Closeness6"])
                 if int(parsedUsername) <= 4128:
                     usersLattice.append(currentUser)
                 else:
@@ -553,7 +557,9 @@ def compareTwoUsers(user1, user2, friendNumber):
 
 #this method gets the number of not close, somewhat close, and very close friends for all usersLattice
 #then adds them together and outputs the total numbers
-def tallyCloseness():
+def tallyCloseness(toWrite):
+    writer = open(toWrite, 'a')
+
     lattNotClose = 0
     lattSomewhat = 0
     lattClose = 0
@@ -588,28 +594,35 @@ def tallyCloseness():
                     oneWayFriendships.append((smallUser.username, currFriend.username))
                     smallClose += 1
 
-    print "Among all of the data from Timepoint 3 we found:\n"
-    print "Number of Not Close Users in the Lattice Network:",
-    print lattNotClose
-    print "Number of Somewhat Close Users in the Lattice Network:",
-    print lattSomewhat
-    print "Number of Very Close Users in the Lattice Network:",
-    print lattClose
-    print "\n"
-    print "Number of Not Close Users in the Small World Network:",
-    print smallNotClose
-    print "Number of Somewhat Close Users in the Small World Network:",
-    print smallSomewhat
-    print "Number of Very Close Users in the Small World Network:",
-    print smallClose
-    print "\n"
-    print "Number of Not Close Users in both networks:",
-    print smallNotClose + lattNotClose
-    print "Number of Somewhat Close Users in both networks:",
-    print smallSomewhat + lattSomewhat
-    print "Number of Very Close Users in both networks:",
-    print smallClose + lattClose
-    print "\n\n"
+    writer.write("Among all of the data from Timepoint 3 we found:\n")
+    writer.write("Number of Not Close Users in the Lattice Network: ")
+    writer.write(str(lattNotClose))
+    writer.write("\n")
+    writer.write("Number of Somewhat Close Users in the Lattice Network: ")
+    writer.write(str(lattSomewhat))
+    writer.write("\n")
+    writer.write("Number of Very Close Users in the Lattice Network: ")
+    writer.write(str(lattClose))
+    writer.write("\n")
+    writer.write("\n\n")
+    writer.write("Number of Not Close Users in the Small World Network: ")
+    writer.write(str(smallNotClose))
+    writer.write("\n")
+    writer.write("Number of Somewhat Close Users in the Small World Network: ")
+    writer.write(str(smallSomewhat))
+    writer.write("\n")
+    writer.write("Number of Very Close Users in the Small World Network: ")
+    writer.write(str(smallClose))
+    writer.write("\n\n")
+    writer.write("Number of Not Close Users in both networks: ")
+    writer.write(str(smallNotClose + lattNotClose))
+    writer.write("\n")
+    writer.write("Number of Somewhat Close Users in both networks: ")
+    writer.write(str(smallSomewhat + lattSomewhat))
+    writer.write("\n")
+    writer.write("Number of Very Close Users in both networks: ")
+    writer.write(str(smallClose + lattClose))
+    writer.write("\n\n\n")
 
 #combines the two users into the user1 object
 #used to combine the timepoint data
@@ -677,7 +690,9 @@ def orderList(list):
 
 #prints the statistics of similarity for all users
 #totals them up and prints the number of similarities between close friends
-def createStatistics():
+def createStatistics(toWrite):
+    writer = open(toWrite, 'a')
+
     numSimilarAge = 0
     numSameGender = 0
     numSamePrimary = 0
@@ -724,25 +739,32 @@ def createStatistics():
             if eachFriend.sameExSmoker == True:
                 numSameExSmoker += 1
 
-    print "Lattice Network Statistics, 22 total relationships"
-    print "-------------------------------------------------"
-    print "Number with a similar age:",
-    print numSimilarAge
-    print "Number with the same gender:",
-    print numSameGender
-    print "Number with the same primary addiction:",
-    print numSamePrimary
-    print "Number with the same secondary addiction:",
-    print numSameSecondary
-    print "Number with the same education level:",
-    print numSameEducation
-    print "Number with the same income level:",
-    print numSameIncome
-    print "Number that were both current smokers:",
-    print numSameCurrentSmoker
-    print "Number that were both ex smokers:",
-    print numSameExSmoker
-    print "\n"
+    writer.write("Lattice Network Statistics, 23 total relationships\n")
+    writer.write("-------------------------------------------------\n")
+    writer.write("Number with a similar age: ")
+    writer.write(str(numSimilarAge))
+    writer.write("\n")
+    writer.write("Number with the same gender: ")
+    writer.write(str(numSameGender))
+    writer.write("\n")
+    writer.write("Number with the same primary addiction: ")
+    writer.write(str(numSamePrimary))
+    writer.write("\n")
+    writer.write("Number with the same secondary addiction: ")
+    writer.write(str(numSameSecondary))
+    writer.write("\n")
+    writer.write("Number with the same education level: ")
+    writer.write(str(numSameEducation))
+    writer.write("\n")
+    writer.write("Number with the same income level: ")
+    writer.write(str(numSameIncome))
+    writer.write("\n")
+    writer.write("Number that were both current smokers: ")
+    writer.write(str(numSameCurrentSmoker))
+    writer.write("\n")
+    writer.write("Number that were both ex smokers: ")
+    writer.write(str(numSameExSmoker))
+    writer.write("\n\n")
 
     numSimilarAge2 = 0
     numSameGender2 = 0
@@ -790,101 +812,132 @@ def createStatistics():
             if eachFriend.sameExSmoker == True:
                 numSameExSmoker2 += 1
 
-    print "Small World Network Statistics, 29 total relationships"
-    print "-------------------------------------------------"
-    print "Number with a similar age:",
-    print numSimilarAge2
-    print "Number with the same gender:",
-    print numSameGender2
-    print "Number with the same primary addiction:",
-    print numSamePrimary2
-    print "Number with the same secondary addiction:",
-    print numSameSecondary2
-    print "Number with the same education level:",
-    print numSameEducation2
-    print "Number with the same income level:",
-    print numSameIncome2
-    print "Number that were both current smokers:",
-    print numSameCurrentSmoker2
-    print "Number that were both ex smokers:",
-    print numSameExSmoker2
-    print "\n"
+    writer.write("Small World Network Statistics, 32 total relationships\n")
+    writer.write("-------------------------------------------------\n")
+    writer.write("Number with a similar age: ")
+    writer.write(str(numSimilarAge2))
+    writer.write("\n")
+    writer.write("Number with the same gender: ")
+    writer.write(str(numSameGender2))
+    writer.write("\n")
+    writer.write("Number with the same primary addiction: ")
+    writer.write(str(numSamePrimary2))
+    writer.write("\n")
+    writer.write("Number with the same secondary addiction: ")
+    writer.write(str(numSameSecondary2))
+    writer.write("\n")
+    writer.write("Number with the same education level: ")
+    writer.write(str(numSameEducation2))
+    writer.write("\n")
+    writer.write("Number with the same income level: ")
+    writer.write(str(numSameIncome2))
+    writer.write("\n")
+    writer.write("Number that were both current smokers: ")
+    writer.write(str(numSameCurrentSmoker2))
+    writer.write("\n")
+    writer.write("Number that were both ex smokers: ")
+    writer.write(str(numSameExSmoker2))
+    writer.write("\n\n")
 
-    print "Combined Statistics, 52 total relationships"
-    print "-------------------------------------------------"
-    print "Number with a similar age:",
-    print numSimilarAge + numSimilarAge2
-    print "Number with the same gender:",
-    print numSameGender + numSameGender2
-    print "Number with the same primary addiction:",
-    print numSamePrimary + numSamePrimary2
-    print "Number with the same secondary addiction:",
-    print numSameSecondary + numSameSecondary2
-    print "Number with the same education level:",
-    print numSameEducation + numSameEducation2
-    print "Number with the same income level:",
-    print numSameIncome + numSameIncome2
-    print "Number that were both current smokers:",
-    print numSameCurrentSmoker + numSameCurrentSmoker2
-    print "Number that were both ex smokers:",
-    print numSameExSmoker + numSameExSmoker2
-    print "\n"
+    writer.write("Combined Statistics, 55 total relationships\n")
+    writer.write("-------------------------------------------------\n")
+    writer.write("Number with a similar age: ")
+    writer.write(str(numSimilarAge + numSimilarAge2))
+    writer.write("\n")
+    writer.write("Number with the same gender: ")
+    writer.write(str(numSameGender + numSameGender2))
+    writer.write("\n")
+    writer.write("Number with the same primary addiction: ")
+    writer.write(str(numSamePrimary + numSamePrimary2))
+    writer.write("\n")
+    writer.write("Number with the same secondary addiction: ")
+    writer.write(str(numSameSecondary + numSameSecondary2))
+    writer.write("\n")
+    writer.write("Number with the same education level: ")
+    writer.write(str(numSameEducation + numSameEducation2))
+    writer.write("\n")
+    writer.write("Number with the same income level: ")
+    writer.write(str(numSameIncome + numSameIncome2))
+    writer.write("\n")
+    writer.write("Number that were both current smokers: ")
+    writer.write(str(numSameCurrentSmoker + numSameCurrentSmoker2))
+    writer.write("\n")
+    writer.write("Number that were both ex smokers: ")
+    writer.write(str(numSameExSmoker + numSameExSmoker2))
+    writer.write("\n\n")
 
 #adds up the number of entries we had to remove because the data was bad
 #does this using the csvs of bad and good friendships that Mary created
-def sumRemovedEntries():
+def sumRemovedEntries(toWrite):
+    writer = open(toWrite, 'a')
     sumSame = 0
     sumDifferent = 0
     total = 0
-    with open('same.csv') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=',')
-        for row in reader:
-            sumSame += int(row["number"])
+    for currUser in usersLattice:
+        for currFriend in currUser.friends:
+            if currFriend.username == "null" and currFriend.close != "":
+                sumDifferent += 1
+            elif currFriend.username != "null":
+                sumSame += 1
 
-    with open('different.csv') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=',')
-        for row in reader:
-            sumDifferent += int(row["number"])
+    for currUser in usersSmall:
+        for currFriend in currUser.friends:
+            if currFriend.username == "null" and currFriend.close != "":
+                sumDifferent += 1
+            elif currFriend.username != "null":
+                sumSame += 1
 
-    total = sumDifferent + sumSame
-    print "We had to remove",
-    print sumDifferent,
-    print "out of",
-    print total,
-    print "entries for a total of",
-    print sumSame,
-    print "good entries."
+    total = sumSame + sumDifferent
+
+    writer.write("We had to remove ")
+    writer.write(str(sumDifferent))
+    writer.write(" out of ")
+    writer.write(str(total))
+    writer.write(" for a total of ")
+    writer.write(str(sumSame))
+    writer.write(" good entries.")
 
 #searches the list of oneWayFriendships for reciprocal friends
 #then creates a new list and prints stats about 1 and 2 way friendships
-def printTwoWayFriendships():
+def printTwoWayFriendships(toWrite):
+    writer = open(toWrite, 'a')
     twoWayFriendships = []
+
     for relationship in oneWayFriendships:
         firstUser, secondUser = relationship
         for relationship2 in oneWayFriendships:
             firstUser2, secondUser2 = relationship2
             if firstUser == secondUser2 and secondUser ==firstUser2:
                 twoWayFriendships.append((firstUser, secondUser))
-    print "The number of one-way friendships we found is",
-    print len(oneWayFriendships) - len(twoWayFriendships)
-    print "The number of two-way friendships we found is",
+    writer.write("The number of one-way friendships we found is ")
+    writer.write(str(len(oneWayFriendships) - len(twoWayFriendships)))
+    writer.write("\n")
+    writer.write("The number of two-way friendships we found is ")
     #divide by two because we counted each two way friendship twice
-    print len(twoWayFriendships)/2
-    print "For a total of",
-    print (len(oneWayFriendships) - len(twoWayFriendships) + len(twoWayFriendships)/2),
-    print "friendships"
+    writer.write(str(len(twoWayFriendships)/2))
+    writer.write("\n")
+    writer.write("For a total of ")
+    writer.write(str((len(oneWayFriendships) - len(twoWayFriendships) + len(twoWayFriendships)/2)))
+    writer.write(" friendships\n")
+    #use to see which friendshships were two way, duplicates
+    #writer.write(twoWayFriendships)
+
+#clear the file so we can write to it
+def clearFile(toClear):
+    open(toClear, 'w').close()
 
 #main, actually executes the methods
+clearFile('Timepoint3Statistics.txt')
 setFriends(3)
 setDemographics()
 setSimilarities()
-tallyCloseness()
+tallyCloseness('Timepoint3Statistics.txt')
 
 orderList(usersLattice)
 orderList(usersSmall)
 orderList(allUsersDemographics)
 
-createStatistics()
-sumRemovedEntries()
+createStatistics('Timepoint3Statistics.txt')
+sumRemovedEntries('Timepoint3Statistics.txt')
 
-printTwoWayFriendships()
+printTwoWayFriendships('Timepoint3Statistics.txt')
