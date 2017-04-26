@@ -1,0 +1,52 @@
+Among all of the data from Timepoint 3 we found:
+Number of Not Close Users in the Lattice Network: 423
+Number of Somewhat Close Users in the Lattice Network: 20
+Number of Very Close Users in the Lattice Network: 3
+
+
+Number of Not Close Users in the Small World Network: 414
+Number of Somewhat Close Users in the Small World Network: 30
+Number of Very Close Users in the Small World Network: 2
+
+Number of Not Close Users in both networks: 837
+Number of Somewhat Close Users in both networks: 50
+Number of Very Close Users in both networks: 5
+
+
+Lattice Network Statistics, 23 total relationships
+-------------------------------------------------
+Number with a similar age: 5
+Number with the same gender: 10
+Number with the same primary addiction: 6
+Number with the same secondary addiction: 1
+Number with the same education level: 7
+Number with the same income level: 9
+Number that were both current smokers: 3
+Number that were both ex smokers: 7
+
+Small World Network Statistics, 32 total relationships
+-------------------------------------------------
+Number with a similar age: 6
+Number with the same gender: 14
+Number with the same primary addiction: 14
+Number with the same secondary addiction: 5
+Number with the same education level: 4
+Number with the same income level: 12
+Number that were both current smokers: 6
+Number that were both ex smokers: 5
+
+Combined Statistics, 55 total relationships
+-------------------------------------------------
+Number with a similar age: 11
+Number with the same gender: 24
+Number with the same primary addiction: 20
+Number with the same secondary addiction: 6
+Number with the same education level: 11
+Number with the same income level: 21
+Number that were both current smokers: 9
+Number that were both ex smokers: 12
+
+We had to remove 242 out of 1142 for a total of 900 good entries.
+The number of one-way friendships we found is 49
+The number of two-way friendships we found is 3
+For a total of 52 friendships
