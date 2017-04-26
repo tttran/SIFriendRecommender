@@ -19,7 +19,7 @@ Number with a similar age: 5
 Number with the same gender: 10
 Number with the same primary addiction: 6
 Number with the same secondary addiction: 1
-Number with the same education level: 4
+Number with the same education level: 7
 Number with the same income level: 9
 Number that were both current smokers: 3
 Number that were both ex smokers: 7
@@ -30,7 +30,7 @@ Number with a similar age: 6
 Number with the same gender: 14
 Number with the same primary addiction: 14
 Number with the same secondary addiction: 5
-Number with the same education level: 1
+Number with the same education level: 4
 Number with the same income level: 12
 Number that were both current smokers: 6
 Number that were both ex smokers: 5
@@ -41,11 +41,12 @@ Number with a similar age: 11
 Number with the same gender: 24
 Number with the same primary addiction: 20
 Number with the same secondary addiction: 6
-Number with the same education level: 5
+Number with the same education level: 11
 Number with the same income level: 21
 Number that were both current smokers: 9
 Number that were both ex smokers: 12
 
-We had to remove 242 out of 1142 for a total of 900 good entries.The number of one-way friendships we found is 49
+We had to remove 242 out of 1142 for a total of 900 good entries.
+The number of one-way friendships we found is 49
 The number of two-way friendships we found is 3
 For a total of 52 friendships

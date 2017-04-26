@@ -1,6 +1,9 @@
 #Top Down approach to homophily
 #Wilson Rhodes
-#need to check that sameEducation is working correctly, numbers seem low
+
+#in the demoLattice table, everyone is listed as has a secondary substance addiction
+#but not everyone has a secondary substance listed, bad data
+#ex u4014
 
 #sorry Matt code is a little ugly
 
@@ -540,7 +543,7 @@ def compareTwoUsers(user1, user2, friendNumber):
         user1.friends[friendNumber].sameSecondarySub = True
 
     #check education
-    if user1.someHighSchool == 1 and user2.someHighSchool == 1 or user1.highSchool == 1 and user2.highSchool == 1 or user1.Associates == 1 and user2.Associates == 1 or user1.Bachelors == 1 and user2.Bachelors == 1 or user1.Associates == 1 and user2.Associates == 1 or user1.Masters == 1 and user2.Masters == 1 or user1.Doctoral == 1 and user2.Doctoral== 1:
+    if user1.someHighSchool == 1 and user2.someHighSchool == 1 or user1.highSchool == 1 and user2.highSchool == 1 or user1.someCollege == 1 and user2.someCollege == 1 or user1.Bachelors == 1 and user2.Bachelors == 1 or user1.Associates == 1 and user2.Associates == 1 or user1.Masters == 1 and user2.Masters == 1 or user1.Doctoral == 1 and user2.Doctoral== 1:
         user1.friends[friendNumber].sameEducation = True
 
     #check income
@@ -895,7 +898,7 @@ def sumRemovedEntries(toWrite):
     writer.write(str(total))
     writer.write(" for a total of ")
     writer.write(str(sumSame))
-    writer.write(" good entries.")
+    writer.write(" good entries.\n")
 
 #searches the list of oneWayFriendships for reciprocal friends
 #then creates a new list and prints stats about 1 and 2 way friendships
@@ -918,7 +921,7 @@ def printTwoWayFriendships(toWrite):
     writer.write("\n")
     writer.write("For a total of ")
     writer.write(str((len(oneWayFriendships) - len(twoWayFriendships) + len(twoWayFriendships)/2)))
-    writer.write(" friendships\n")
+    writer.write(" friendships")
     #use to see which friendshships were two way, duplicates
     #writer.write(twoWayFriendships)
 
