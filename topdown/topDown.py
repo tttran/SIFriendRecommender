@@ -1,16 +1,7 @@
 #Top Down approach to homophily
 #Wilson Rhodes
 
-#in the demoLattice table, everyone is listed as has a secondary substance addiction
-#but not everyone has a secondary substance listed, bad data
-#ex u4014
-
-#sorry Matt code is a little ugly
-
 import csv
-
-#this list holds the skeletonUser objects
-allUsersDemographics = []
 
 #these lists are used for t2 is we are doing both timepoints
 usersLattice2 = []
@@ -184,68 +175,14 @@ class user:
             print currFriend.sameCurrentSmoker
             print currFriend.sameExSmoker
 
-#this class is used for user comparisons
-#some users are not in the survey but were listed as a friends and in this case
-#we can't directly compare users because they don't have a user object
-#this class circumvents that by creating a skeletonUser object that contains
-#all users even if they weren't in the survey for comparison
-class skeletonUser:
-    def __init__(self, username):
-        self.username = username
-
-        self.age = 0
-        self.male = 0
-        self.female = 0
-        self.other = 0
-
-        self.primarySub = ""
-        self.primAlcohol = 0
-        self.primCannabis = 0
-        self.primCocaine = 0
-        self.primOpiods = 0
-        self.primPainRel = 0
-        self.primStimulants = 0
-        self.primTranq = 0
-        self.primDiss = 0
-
-        self.secondarySub = ""
-        self.secAlcohol = 0
-        self.secCannabis = 0
-        self.secCocaine = 0
-        self.secOpiods = 0
-        self.secPainRel = 0
-        self.secStimulants = 0
-        self.secTranq = 0
-        self.secNico = 0
-        self.other = 0
-
-        self.someHighSchool = 0
-        self.highSchool = 0
-        self.someCollege = 0
-        self.Associates = 0
-        self.Bachelors = 0
-        self.Masters = 0
-        self.Doctoral = 0
-
-        self.lessThan30 = 0
-        self.thirtyTo50 = 0
-        self.fiftyTo70 = 0
-        self.seventyTo90 = 0
-        self.ninetyTo150 = 0
-        self.greaterThan150 = 0
-        self.preferNotToAns = 0
-
-        self.currentSmoker = 0
-        self.exSmoker = 0
-
 #if using both timepoints put t2 data in usersLattice2 and usersSmall2
 #and t3 data in usersLattice3 and usersSmall3
 #then call the combine timepoints method
 #if only using one timepoint put the data from that timepoint into
 #usersLattice and usersSmall and don't call the combine method
 
-#currently set up to only user t3 data
-#creates all of the user objects for use later from the csvs
+#currently set up to only use t3 data
+#creates all of the user objects from the csvs for use later
 def setFriends(timepoint):
     if timepoint == 2:
         with open('Timepoint2AllData.csv') as csvfile:
@@ -273,73 +210,29 @@ def setFriends(timepoint):
                 else:
                     usersSmall.append(currentUser)
 
-#creates all of the skeleton user objects for demographic comparison
-#also updates the user objects with their demographics
-def setDemographics():
-    with open('DemoLattice.csv') as csvfile:
+#Updates the user objects with their demographics
+#this method is dependent on every user being listed in the input survery file
+#that is, every username in the study should have a user object before this method is called
+#even if the user listed no friends correctly, they need a user object that can
+#hold their demographics for comparison
+#csvFile is the demographic csv file for a network
+#network name should be lattice or smallWorld
+def setDemographics(csvFile, networkName):
+    with open(csvFile) as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',')
         for row in reader:
 
-            #add to full demo table for comparisons
-            demoUser = skeletonUser(row["ID"])
+            if networkName == "lattice":
+                foundUser = False
+                for checkUser in usersLattice:
+                    if row["ID"] == checkUser.username:
+                        currentUser = checkUser
 
-            demoUser.age = int(row["Age"])
-            demoUser.male = int(row["Male"])
-            demoUser.female = int(row["Female"])
-            demoUser.other = int(row["Other"])
-
-            demoUser.primarySub = row["Primary Sub. Add."]
-            demoUser.primAlcohol = int(row["Alcohol"])
-            demoUser.primCannabis = int(row["Cannabis"])
-            demoUser.primCocaine = int(row["Cocaine"])
-            demoUser.primOpiods = int(row["Opiods"])
-            demoUser.primPainRel = int(row["Presc. Pain Relivers"])
-            demoUser.primStimulants = int(row["Stimulants"])
-            demoUser.primTranq = int(row["Traq/Depres."])
-            demoUser.primDiss = int(row["Dissociatives"])
-
-            demoUser.secondarySub = row["Secondary Sub. Add."]
-            demoUser.secAlcohol = int(row["SAlcohol"])
-            demoUser.secCannabis = int(row["SCannabis"])
-            demoUser.secCocaine = int(row["SCocaine"])
-            demoUser.secOpiods = int(row["SOpiods"])
-            demoUser.secPainRel = int(row["SPresc. Pain Relivers"])
-            demoUser.secStimulants = int(row["SStimulants"])
-            demoUser.secTranq = int(row["STraq/Depres."])
-            demoUser.secNico = int(row["SNicotine"])
-            demoUser.other = int(row["Other (non-subs)"])
-
-            demoUser.someHighSchool = int(row["Some High School"])
-            demoUser.highSchool = int(row["High school diploma or equivalency"])
-            demoUser.someCollege = int(row["Some College"])
-            demoUser.Associates = int(row["Associates Deg."])
-            demoUser.Bachelors = int(row["Bach. Deg."])
-            demoUser.Masters = int(row["Mast. Deg."])
-            demoUser.Doctoral = int(row["Doc. Deg."])
-
-            demoUser.lessThan30 = int(row["Less than $30,000"])
-            demoUser.thirtyTo50 = int(row["$30,000 - $49,999"])
-            demoUser.fiftyTo70 = int(row["$50,000 - $69,999"])
-            demoUser.seventTo90 = int(row["$70,000 - $89,999"])
-            demoUser.ninetyTo150 = int(row["$90,000 - $149,999"])
-            demoUser.greaterThan150 = int(row["$150,000 and above"])
-            demoUser.preferNotToAns = int(row["Prefer Not to Answer"])
-
-            demoUser.currentSmoker = int(row["Current Smoker"])
-            demoUser.exSmoker = int(row["Ex-Smoker"])
-
-            allUsersDemographics.append(demoUser)
-
-            #add to table that contains usable data
-            foundUser = False
-            for checkUser in usersLattice:
-                if row["ID"] == checkUser.username:
-                    currentUser = checkUser
-                    foundUser = True
-                    break
-
-            if not foundUser:
-                continue
+            elif networkName == "smallWorld":
+                foundUser = False
+                for checkUser in usersSmall:
+                    if row["ID"] == checkUser.username:
+                        currentUser = checkUser
 
             currentUser.age = int(row["Age"])
             currentUser.male = int(row["Male"])
@@ -353,112 +246,10 @@ def setDemographics():
             currentUser.primOpiods = int(row["Opiods"])
             currentUser.primPainRel = int(row["Presc. Pain Relivers"])
             currentUser.primStimulants = int(row["Stimulants"])
-            currentUser.primTranq = int(row["Traq/Depres."])
-            currentUser.primDiss = int(row["Dissociatives"])
-
-            currentUser.secondarySub = row["Secondary Sub. Add."]
-            currentUser.secAlcohol = int(row["SAlcohol"])
-            currentUser.secCannabis = int(row["SCannabis"])
-            currentUser.secCocaine = int(row["SCocaine"])
-            currentUser.secOpiods = int(row["SOpiods"])
-            currentUser.secPainRel = int(row["SPresc. Pain Relivers"])
-            currentUser.secStimulants = int(row["SStimulants"])
-            currentUser.secTranq = int(row["STraq/Depres."])
-            currentUser.secNico = int(row["SNicotine"])
-            currentUser.other = int(row["Other (non-subs)"])
-
-            currentUser.someHighSchool = int(row["Some High School"])
-            currentUser.highSchool = int(row["High school diploma or equivalency"])
-            currentUser.someCollege = int(row["Some College"])
-            currentUser.Associates = int(row["Associates Deg."])
-            currentUser.Bachelors = int(row["Bach. Deg."])
-            currentUser.Masters = int(row["Mast. Deg."])
-            currentUser.Doctoral = int(row["Doc. Deg."])
-
-            currentUser.lessThan30 = int(row["Less than $30,000"])
-            currentUser.thirtyTo50 = int(row["$30,000 - $49,999"])
-            currentUser.fiftyTo70 = int(row["$50,000 - $69,999"])
-            currentUser.seventTo90 = int(row["$70,000 - $89,999"])
-            currentUser.ninetyTo150 = int(row["$90,000 - $149,999"])
-            currentUser.greaterThan150 = int(row["$150,000 and above"])
-            currentUser.preferNotToAns = int(row["Prefer Not to Answer"])
-
-            currentUser.currentSmoker = int(row["Current Smoker"])
-            currentUser.exSmoker = int(row["Ex-Smoker"])
-
-    with open('DemoSmall.csv') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=',')
-        for row in reader:
-            #add to full demo table for comparisons
-            demoUser = skeletonUser(row["ID"])
-
-            demoUser.age = int(row["Age"])
-            demoUser.male = int(row["Male"])
-            demoUser.female = int(row["Female"])
-            demoUser.other = int(row["Other"])
-
-            demoUser.primarySub = row["Primary Sub. Add."]
-            demoUser.primAlcohol = int(row["Alcohol"])
-            demoUser.primCannabis = int(row["Cannabis"])
-            demoUser.primCocaine = int(row["Cocaine"])
-            demoUser.primOpiods = int(row["Opiods"])
-            demoUser.primPainRel = int(row["Presc. Pain Relivers"])
-            demoUser.primStimulants = int(row["Stimulants"])
-
-            demoUser.secondarySub = row["Secondary Sub. Add."]
-            demoUser.secAlcohol = int(row["SAlcohol"])
-            demoUser.secCannabis = int(row["SCannabis"])
-            demoUser.secCocaine = int(row["SCocaine"])
-            demoUser.secOpiods = int(row["SOpiods"])
-            demoUser.secPainRel = int(row["SPresc. Pain Relivers"])
-            demoUser.secStimulants = int(row["SStimulants"])
-            demoUser.secTranq = int(row["STraq/Depres."])
-            demoUser.secNico = int(row["SNicotine"])
-            demoUser.other = int(row["Other (non-subs)"])
-
-            demoUser.someHighSchool = int(row["Some High School"])
-            demoUser.highSchool = int(row["High school diploma or equivalency"])
-            demoUser.someCollege = int(row["Some College"])
-            demoUser.Associates = int(row["Associates Deg."])
-            demoUser.Bachelors = int(row["Bach. Deg."])
-            demoUser.Masters = int(row["Mast. Deg."])
-            demoUser.Doctoral = int(row["Doc. Deg."])
-
-            demoUser.lessThan30 = int(row["Less than $30,000"])
-            demoUser.thirtyTo50 = int(row["$30,000 - $49,999"])
-            demoUser.fiftyTo70 = int(row["$50,000 - $69,999"])
-            demoUser.seventTo90 = int(row["$70,000 - $89,999"])
-            demoUser.ninetyTo150 = int(row["$90,000 - $149,999"])
-            demoUser.greaterThan150 = int(row["$150,000 and above"])
-            demoUser.preferNotToAns = int(row["Prefer Not to Answer"])
-
-            demoUser.currentSmoker = int(row["Current Smoker"])
-            demoUser.exSmoker = int(row["Ex-Smoker"])
-
-            allUsersDemographics.append(demoUser)
-
-            foundUser = False
-            for checkUser in usersSmall:
-                if row["ID"] == checkUser.username:
-                    currentUser = checkUser
-                    foundUser = True
-                    break
-
-            if not foundUser:
-                continue
-
-            currentUser.age = int(row["Age"])
-            currentUser.male = int(row["Male"])
-            currentUser.female = int(row["Female"])
-            currentUser.other = int(row["Other"])
-
-            currentUser.primarySub = row["Primary Sub. Add."]
-            currentUser.primAlcohol = int(row["Alcohol"])
-            currentUser.primCannabis = int(row["Cannabis"])
-            currentUser.primCocaine = int(row["Cocaine"])
-            currentUser.primOpiods = int(row["Opiods"])
-            currentUser.primPainRel = int(row["Presc. Pain Relivers"])
-            currentUser.primStimulants = int(row["Stimulants"])
+            #these columns are not found in the small world csv file
+            if networkName == "lattice":
+                currentUser.primTranq = int(row["Traq/Depres."])
+                currentUser.primDiss = int(row["Dissociatives"])
 
             currentUser.secondarySub = row["Secondary Sub. Add."]
             currentUser.secAlcohol = int(row["SAlcohol"])
@@ -500,7 +291,7 @@ def setSimilarities():
             if eachFriend.username != "null" and eachFriend.username != "unull":
                 compareName = eachFriend.username
                 compareUser = currUser
-                for findFriend in allUsersDemographics:
+                for findFriend in usersLattice:
                     if findFriend.username == compareName:
                         compareUser = findFriend
                         break
@@ -515,7 +306,7 @@ def setSimilarities():
             if eachFriend.username != "null" and eachFriend.username != "unull":
                 compareName = eachFriend.username
                 compareUser = currUser
-                for findFriend in allUsersDemographics:
+                for findFriend in usersSmall:
                     if findFriend.username == compareName:
                         compareUser = findFriend
                         break
@@ -526,6 +317,7 @@ def setSimilarities():
 #this method does the heavy lifting for set similarities
 #this is the method that actually does the comparing between users
 def compareTwoUsers(user1, user2, friendNumber):
+    #half your age plus 7?
     #check if ages are +- 4
     ageDifference = int(user1.age) - int(user2.age)
     if ageDifference >= -4 and ageDifference <= 4:
@@ -558,7 +350,7 @@ def compareTwoUsers(user1, user2, friendNumber):
     if user1.exSmoker == 1 and user2.exSmoker == 1:
         user1.friends[friendNumber].sameExSmoker = True
 
-#this method gets the number of not close, somewhat close, and very close friends for all usersLattice
+#this method gets the number of not close, somewhat close, and very close friends for all users
 #then adds them together and outputs the total numbers
 def tallyCloseness(toWrite):
     writer = open(toWrite, 'a')
@@ -597,6 +389,7 @@ def tallyCloseness(toWrite):
                     oneWayFriendships.append((smallUser.username, currFriend.username))
                     smallClose += 1
 
+    #dictionary to csv if have time
     writer.write("Among all of the data from Timepoint 3 we found:\n")
     writer.write("Number of Not Close Users in the Lattice Network: ")
     writer.write(str(lattNotClose))
@@ -871,6 +664,8 @@ def createStatistics(toWrite):
 
 #adds up the number of entries we had to remove because the data was bad
 #does this using the csvs of bad and good friendships that Mary created
+
+#specify which entries count as removed
 def sumRemovedEntries(toWrite):
     writer = open(toWrite, 'a')
     sumSame = 0
@@ -932,13 +727,13 @@ def clearFile(toClear):
 #main, actually executes the methods
 clearFile('Timepoint3Statistics.txt')
 setFriends(3)
-setDemographics()
+setDemographics("DemoLattice.csv", "lattice")
+setDemographics("DemoSmall.csv", "smallWorld")
 setSimilarities()
 tallyCloseness('Timepoint3Statistics.txt')
 
 orderList(usersLattice)
 orderList(usersSmall)
-orderList(allUsersDemographics)
 
 createStatistics('Timepoint3Statistics.txt')
 sumRemovedEntries('Timepoint3Statistics.txt')
