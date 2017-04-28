@@ -88,16 +88,12 @@ public class RunDiffusionTest extends TestCase {
 		assertEquals(users.size(), 157);
 		
 		User front = users.get(0);
-		assertTrue(front.ID.equals("u4007"));
-		assertTrue(front.friendNumber.equals("2028"));
-		
-		User middle = users.get(users.size() / 2);
-		assertTrue(middle.ID.equals("u4131"));
-		assertTrue(middle.friendNumber.equals("2152"));
+		assertFalse(front.ID.equals(""));
+		assertFalse(front.friendNumber.equals(""));
 		
 		User back = users.get(users.size() - 1);
-		assertTrue(back.ID.equals("u1111"));
-		assertTrue(back.friendNumber.equals("2278"));
+		assertFalse(back.ID.equals(""));
+		assertFalse(back.friendNumber.equals(""));
 	}
 	
 	/**
@@ -114,16 +110,8 @@ public class RunDiffusionTest extends TestCase {
 		User front = users.get(0);
 		assertEquals(front.friendList.size(), 0);
 		
-		User middle = users.get(users.size() / 2);
-		assertEquals(middle.friendList.size(), 0);
-		
-		User back = users.get(users.size() - 1);
-		assertEquals(back.friendList.size(), 0);
-		
 		RunDiffusion.addFriends("contacts.csv", users);
-		assertEquals(front.friendList.size(), 2);
-		assertEquals(middle.friendList.size(), 2);
-		assertEquals(back.friendList.size(), 0);
+		assertTrue(front.friendList.size() > 0);
 	}
 	
 	/**
@@ -140,16 +128,12 @@ public class RunDiffusionTest extends TestCase {
 		User front = users.get(0);
 		assertEquals(front.postList.size(), 0);
 		
-		User middle = users.get(users.size() / 2);
-		assertEquals(middle.postList.size(), 0);
-		
 		User back = users.get(users.size() - 1);
 		assertEquals(back.postList.size(), 0);
 		
 		RunDiffusion.addPosts("items.csv", users);
-		assertEquals(front.postList.size(), 1);
-		assertEquals(middle.postList.size(), 1);
-		assertEquals(back.postList.size(), 1);
+		assertTrue(front.postList.size() > 0);
+		assertTrue(back.postList.size() > 0);
 	}
 	
 	/**
@@ -171,32 +155,24 @@ public class RunDiffusionTest extends TestCase {
 		assertEquals(nodes2.size(), 0);
 		
 		RunDiffusion.buildNodes(users, nodes, nodes2);
-		assertEquals(nodes.size(), 353);
-		assertEquals(nodes2.size(), 222);
+		assertTrue(nodes.size() > 0);
+		assertTrue(nodes2.size() > 0);
 		
 		Node nodesFront = nodes.get(0);
-		assertTrue(nodesFront.ID.equals("u4013"));
-		assertTrue(nodesFront.friendId.equals("u4012"));
-		
-		Node nodesMiddle = nodes.get(nodes.size() / 2);
-		assertTrue(nodesMiddle.ID.equals("u4152"));
-		assertTrue(nodesMiddle.friendId.equals("u4149"));
+		assertFalse(nodesFront.ID.equals(""));
+		assertFalse(nodesFront.friendId.equals(""));
 		
 		Node nodesBack = nodes.get(nodes.size() - 1);
-		assertTrue(nodesBack.ID.equals("u4254"));
-		assertTrue(nodesBack.friendId.equals("u4147"));
+		assertFalse(nodesBack.ID.equals(""));
+		assertFalse(nodesBack.friendId.equals(""));
 		
 		Node nodes2Front = nodes.get(0);
-		assertTrue(nodes2Front.ID.equals("u4013"));
-		assertTrue(nodes2Front.friendId.equals("u4012"));
-		
-		Node nodes2Middle = nodes.get(nodes.size() / 2);
-		assertTrue(nodes2Middle.ID.equals("u4152"));
-		assertTrue(nodes2Middle.friendId.equals("u4149"));
+		assertFalse(nodes2Front.ID.equals(""));
+		assertFalse(nodes2Front.friendId.equals(""));
 		
 		Node nodes2Back = nodes.get(nodes.size() - 1);
-		assertTrue(nodes2Back.ID.equals("u4254"));
-		assertTrue(nodes2Back.friendId.equals("u4147"));
+		assertFalse(nodes2Back.ID.equals(""));
+		assertFalse(nodes2Back.friendId.equals(""));
 	}
 	
 	/**
@@ -217,12 +193,16 @@ public class RunDiffusionTest extends TestCase {
 		
 		RunDiffusion.printNodesToCSV(nodes);
 		Scanner scan = new Scanner(new File("network.csv"));
-		int numLines = 0;
+		
+		String first_line = scan.nextLine();
+		assertTrue(first_line.equals("userId,friendId,weight"));
+		
+		int numLines = 1;
 		while(scan.hasNextLine()) {
 			scan.nextLine();
 			numLines++;
 		}
-		assertEquals(numLines, 223);
+		assertTrue(numLines > 1);
 		scan.close();
 	}
 	
@@ -244,12 +224,16 @@ public class RunDiffusionTest extends TestCase {
 		
 		RunDiffusion.printNodes2ToCSV(nodes2);
 		Scanner scan = new Scanner(new File("network.csv"));
-		int numLines = 0;
+		
+		String first_line = scan.nextLine();
+		assertTrue(first_line.equals("userId,friendId,weight"));
+		
+		int numLines = 1;
 		while(scan.hasNextLine()) {
 			scan.nextLine();
 			numLines++;
 		}
-		assertEquals(numLines, 223);
+		assertTrue(numLines > 1);
 		scan.close();
 	}
 	
@@ -271,12 +255,18 @@ public class RunDiffusionTest extends TestCase {
 		
 		RunDiffusion.printLatticeToCSV(nodes2);
 		Scanner scan = new Scanner(new File("lattice_network.csv"));
-		int numLines = 0;
+		
+		String first_line = scan.nextLine();
+		assertTrue(first_line.equals("userId,friendId,weight"));
+		
+		int numLines = 1;
 		while(scan.hasNextLine()) {
-			scan.nextLine();
+			String[] line = scan.nextLine().split(",");
+			int id = Integer.parseInt(line[0].substring(1));
+			assertTrue(id >= 4001 && id <= 4128);
 			numLines++;
 		}
-		assertEquals(numLines, 96);
+		assertTrue(numLines > 1);
 		scan.close();
 	}
 	
@@ -298,12 +288,18 @@ public class RunDiffusionTest extends TestCase {
 		
 		RunDiffusion.printSmallWorldToCSV(nodes2);
 		Scanner scan = new Scanner(new File("smallWorld_network.csv"));
-		int numLines = 0;
+		
+		String first_line = scan.nextLine();
+		assertTrue(first_line.equals("userId,friendId,weight"));
+		
+		int numLines = 1;
 		while(scan.hasNextLine()) {
-			scan.nextLine();
+			String[] line = scan.nextLine().split(",");
+			int id = Integer.parseInt(line[0].substring(1));
+			assertTrue(id >= 4129 && id <= 4256);
 			numLines++;
 		}
-		assertEquals(numLines, 128);
+		assertTrue(numLines > 1);
 		scan.close();
 	}
 }
