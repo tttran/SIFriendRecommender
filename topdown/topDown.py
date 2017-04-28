@@ -155,7 +155,7 @@ class user:
         print self.lessThan30
         print self.thirtyTo50
         print self.fiftyTo70
-        print self.seventTo90
+        print self.seventyTo90
         print self.ninetyTo150
         print self.greaterThan150
         print self.preferNotToAns
@@ -184,18 +184,19 @@ class user:
 #currently set up to only use t3 data
 #creates all of the user objects from the csvs for use later
 def setFriends(timepoint):
-    if timepoint == 2:
-        with open('Timepoint2AllData.csv') as csvfile:
-            reader = csv.DictReader(csvfile, delimiter=',')
-            for row in reader:
-                currentUser = user(row["username"], row["Recovery Buddy [1]"], row["Recovery Buddy [2]"], row["Recovery Buddy [3]"], row["Recovery Buddy [4]"], row["Recovery Buddy [5]"], row["Recovery Buddy [6]"])
-                parsedUsername = row["username"]
-                parsedUsername = parsedUsername[1:]
-                currentUser.setCloseness(row["How close to you feel to Buddy 1"], row["How close to you feel to Buddy 2"], row["How close to you feel to Buddy 3"], row["How close to you feel to Buddy 4"], row["How close to you feel to Buddy 5"], row["How close to you feel to Buddy 6"])
-                if int(parsedUsername) <= 4128:
-                    usersLattice2.append(currentUser)
-                else:
-                    usersSmall2.append(currentUser)
+    # Errors with timepoint 2 data but might be useful in the future
+    # if timepoint == 2:
+    #     with open('Timepoint2AllData.csv') as csvfile:
+    #         reader = csv.DictReader(csvfile, delimiter=',')
+    #         for row in reader:
+    #             currentUser = user(row["username"], row["Recovery Buddy [1]"], row["Recovery Buddy [2]"], row["Recovery Buddy [3]"], row["Recovery Buddy [4]"], row["Recovery Buddy [5]"], row["Recovery Buddy [6]"])
+    #             parsedUsername = row["username"]
+    #             parsedUsername = parsedUsername[1:]
+    #             currentUser.setCloseness(row["How close to you feel to Buddy 1"], row["How close to you feel to Buddy 2"], row["How close to you feel to Buddy 3"], row["How close to you feel to Buddy 4"], row["How close to you feel to Buddy 5"], row["How close to you feel to Buddy 6"])
+    #             if int(parsedUsername) <= 4128:
+    #                 usersLattice2.append(currentUser)
+    #             else:
+    #                 usersSmall2.append(currentUser)
 
     if timepoint == 3:
         with open('sameClose.csv') as csvfile:
