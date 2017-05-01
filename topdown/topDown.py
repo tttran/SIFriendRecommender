@@ -725,6 +725,55 @@ def printTwoWayFriendships(toWrite):
 def clearFile(toClear):
     open(toClear, 'w').close()
 
+#method to create a csv for Prashant
+def printHomophily(writeTo):
+    writer = open(writeTo, 'w')
+    writer.write("Similar Age, Same Gender, Same Primary Addiction, Same Secondary Addiction, Same Education, Same Income, Both Current Smokers, Both Ex-Smokers, Closeness\n")
+    for currUser in usersLattice:
+        for currFriend in currUser.friends:
+            if currFriend.close == "":
+                continue
+            writer.write(str(int(currFriend.similarAge)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameGender)))
+            writer.write (",")
+            writer.write(str(int(currFriend.samePrimarySub)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameSecondarySub)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameEducation)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameIncome)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameCurrentSmoker)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameExSmoker)))
+            writer.write (",")
+            writer.write(currFriend.close)
+            writer.write ("\n")
+    for currUser in usersSmall:
+        for currFriend in currUser.friends:
+            if currFriend.close == "":
+                continue
+            writer.write(str(int(currFriend.similarAge)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameGender)))
+            writer.write (",")
+            writer.write(str(int(currFriend.samePrimarySub)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameSecondarySub)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameEducation)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameIncome)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameCurrentSmoker)))
+            writer.write (",")
+            writer.write(str(int(currFriend.sameExSmoker)))
+            writer.write (",")
+            writer.write(currFriend.close)
+            writer.write ("\n")
+
 #main, actually executes the methods
 clearFile('Timepoint3Statistics.txt')
 setFriends(3)
@@ -740,3 +789,5 @@ createStatistics('Timepoint3Statistics.txt')
 sumRemovedEntries('Timepoint3Statistics.txt')
 
 printTwoWayFriendships('Timepoint3Statistics.txt')
+
+#printHomophily('HomophilyStatistics.csv')
