@@ -1,0 +1,257 @@
+,user,buddy1,Closeness1,buddy2,Closeness2,buddy3,Closeness3,buddy4,Closeness4,buddy5,Closeness5,buddy6,Closeness6
+0,u4001,u4002,not close,u4003,not close,u4004,not close,u4126,not close,u4127,not close,u4128,not close
+1,u4002,,,,,,,,,,,,
+2,u4003,,,,,,,,,,,,
+3,u4004,u4001,not close,u4002,not close,u4003,not close,u4005,not close,u4006,not close,u4007,not close
+4,u4005,,,,,,,,,,,,
+5,u4006,u4003,not close,u4004,not close,u4005,not close,u4007,not close,u4008,not close,u4009,not close
+6,u4007,,,,,,,,,,,,
+7,u4008,u4006,somewhat close,u4005,not close,u4009,not close,u4010,not close,u4011,not close,,not close
+8,u4009,u4008,not close,u4010,not close,u4006,not close,u4007,not close,u4012,not close,,not close
+9,u4010,,very close,,very close,,very close,,very close,,very close,,very close
+10,u4011,u4012,not close,,not close,,not close,,not close,,somewhat close,,not close
+11,u4012,,very close,,somewhat close,,somewhat close,,somewhat close,,somewhat close,,somewhat close
+12,u4013,,very close,,somewhat close,,somewhat close,,somewhat close,,somewhat close,,very close
+13,u4014,u4011,not close,u4012,not close,u4013,not close,u4015,somewhat close,u4016,not close,u4017,not close
+14,u4015,u4012,not close,u4013,not close,u4014,not close,u4016,not close,u4017,not close,u4018,not close
+15,u4016,u4013,not close,u4014,not close,u4015,not close,u4017,not close,u4018,not close,u4019,not close
+16,u4017,u4014,not close,u4015,not close,u4016,not close,u4018,not close,u4019,not close,u4020,not close
+17,u4018,u4015,not close,u4016,not close,u4017,not close,u4019,not close,u4020,not close,u4021,not close
+18,u4019,u4017,not close,u4016,not close,u4020,not close,u4022,not close,u4021,not close,u4018,not close
+19,u4020,u4017,somewhat close,u4018,not close,u4019,not close,u4021,not close,u4022,somewhat close,u4023,not close
+20,u4021,u4018,not close,u4019,not close,u4020,not close,u4022,not close,u4023,not close,u4024,not close
+21,u4022,u4019,not close,u4020,not close,u4021,not close,u4023,not close,u4024,not close,,not close
+22,u4023,,,,,,,,,,,,
+23,u4024,u4022,not close,u4021,not close,u4025,not close,u4026,not close,u4027,not close,u4023,not close
+24,u4025,,,,,,,,,,,,
+25,u4026,u4024,not close,u4025,not close,u4027,not close,u4029,not close,u4028,not close,u4023,not close
+26,u4027,u4024,not close,u4025,not close,u4026,not close,u4028,not close,u4029,not close,u4030,not close
+27,u4028,u4025,not close,u4026,not close,u4027,not close,u4029,not close,u4030,not close,u4031,not close
+28,u4029,u4026,not close,u4027,not close,u4028,not close,u4030,not close,u4031,not close,u4032,not close
+29,u4030,u4027,not close,u4028,not close,u4029,not close,u4031,not close,u4032,not close,u4033,not close
+30,u4031,,not close,,not close,,not close,,not close,,not close,,not close
+31,u4032,,not close,,not close,,not close,,not close,,not close,,not close
+32,u4033,,not close,,not close,,not close,,not close,,not close,,not close
+33,u4034,u4035,not close,u4036,not close,u4037,not close,u4033,not close,u4032,not close,,not close
+34,u4035,,not close,,not close,,not close,,not close,,not close,,not close
+35,u4036,u4033,not close,u4034,not close,u4035,not close,u4037,not close,u4038,not close,u4039,not close
+36,u4037,u4002,not close,u4035,not close,u4052,not close,,not close,,not close,,not close
+37,u4038,u4037,not close,u4035,not close,u4036,not close,u4039,very close,u4041,not close,,not close
+38,u4039,,not close,,not close,,not close,,not close,,not close,,not close
+39,u4040,u4037,not close,u4041,not close,u4038,not close,u4042,not close,u4043,not close,,not close
+40,u4041,u4038,not close,u4039,not close,u4040,not close,u4042,not close,u4043,not close,u4044,not close
+41,u4042,,,,,,,,,,,,
+42,u4043,,,,,,,,,,,,
+43,u4044,u4046,not close,,not close,,not close,,not close,,not close,,not close
+44,u4045,u4042,not close,u4043,not close,u4044,not close,,not close,,not close,,not close
+45,u4046,u4043,not close,u4044,somewhat close,u4045,not close,u4047,not close,u4048,not close,u4049,not close
+46,u4047,,,,,,,,,,,,
+47,u4048,,,,,,,,,,,,
+48,u4049,u4046,not close,u4047,not close,u4048,not close,u4050,not close,u4051,not close,u4052,not close
+49,u4050,,not close,,not close,,not close,,not close,,not close,,not close
+50,u4051,u4050,somewhat close,u4052,not close,u4054,somewhat close,,not close,,not close,,not close
+51,u4052,u4037,not close,u4053,not close,u4054,not close,u4049,not close,u4050,not close,u4051,not close
+52,u4053,,,,,,,,,,,,
+53,u4054,,not close,,not close,,not close,,not close,,not close,,not close
+54,u4055,u4052,not close,u4053,not close,u4054,not close,u4056,not close,u4057,not close,u4058,not close
+55,u4056,,not close,,not close,,not close,,not close,,not close,,not close
+56,u4057,u4054,not close,u4055,not close,u4056,not close,u4058,somewhat close,u4059,somewhat close,u4060,somewhat close
+57,u4058,u4055,not close,u4056,not close,u4057,not close,u4059,not close,u4060,not close,u4061,not close
+58,u4059,u4056,not close,u4057,not close,u4058,not close,u4060,not close,u4061,not close,u4062,not close
+59,u4060,u4059,not close,u4057,not close,u4063,not close,u4062,not close,u4058,not close,u4061,not close
+60,u4061,u4058,not close,u4059,not close,u4060,not close,u4062,not close,u4063,not close,u4064,not close
+61,u4062,u4059,not close,u4060,somewhat close,u4061,not close,u4063,somewhat close,u4064,not close,u4065,not close
+62,u4063,u4060,not close,u4061,not close,u4062,not close,u4064,not close,u4065,not close,u4066,not close
+63,u4064,,,,,,,,,,,,
+64,u4065,u4063,not close,u4066,not close,u4068,not close,u4062,not close,u4064,not close,u4067,not close
+65,u4066,u4063,not close,u4064,not close,u4065,not close,u4067,not close,u4068,not close,u4069,not close
+66,u4067,,not close,,not close,,not close,,not close,,not close,,not close
+67,u4068,u4065,not close,u4066,somewhat close,u4067,somewhat close,u4069,somewhat close,u4070,not close,u4071,somewhat close
+68,u4069,,not close,,,,,,,,,,
+69,u4070,u4067,not close,u4068,not close,u4069,not close,u4072,not close,u4073,not close,,not close
+70,u4071,u4070,not close,u4072,not close,u4073,not close,u4068,not close,u4069,not close,u4074,not close
+71,u4072,,somewhat close,,somewhat close,,somewhat close,,somewhat close,,not close,,not close
+72,u4073,u4070,not close,u4071,not close,u4072,not close,u4074,not close,u4075,not close,u4076,not close
+73,u4074,,,,,,,,,,,,
+74,u4075,,,,,,,,,,,,
+75,u4076,u4073,not close,u4074,not close,u4075,not close,u4077,not close,u4078,not close,u4079,not close
+76,u4077,u4074,not close,u4075,not close,u4076,not close,u4078,not close,u4079,not close,u4080,not close
+77,u4078,u4075,not close,u4076,not close,u4077,not close,u4079,not close,u4080,not close,,somewhat close
+78,u4079,,not close,,not close,,not close,,not close,,not close,,not close
+79,u4080,u4077,not close,u4078,not close,u4079,not close,u4081,not close,u4082,not close,u4083,not close
+80,u4081,u4082,not close,u4079,not close,u4078,not close,,not close,,not close,,not close
+81,u4082,u4079,not close,u4080,not close,u4081,not close,u4083,not close,u4084,not close,u4085,not close
+82,u4083,,not close,,not close,,not close,,not close,,not close,,not close
+83,u4084,u4081,not close,u4082,not close,u4083,not close,u4085,not close,u4086,not close,u4087,not close
+84,u4085,,,,,,,,,,,,
+85,u4086,u4083,not close,u4085,not close,u4084,not close,u4087,not close,u4089,not close,,not close
+86,u4087,u4084,not close,u4084,not close,u4086,not close,u4088,not close,u4089,not close,u4090,not close
+87,u4088,,not close,,,,,,,,,,
+88,u4089,,very close,,very close,,very close,,very close,,very close,,very close
+89,u4090,u4087,not close,u4088,not close,u4089,not close,u4091,very close,u4092,not close,,not close
+90,u4091,u4088,not close,u4089,not close,u4090,not close,u4092,not close,u4093,not close,u4094,not close
+91,u4092,,,,,,,,,,,,
+92,u4093,u4090,not close,u4091,not close,u4092,not close,u4094,not close,u4095,not close,u4096,not close
+93,u4094,u4095,not close,u4092,not close,u4097,not close,u4096,not close,u4093,not close,u4091,not close
+94,u4095,,,,,,,,,,,,
+95,u4096,,,,,,,,,,,,
+96,u4097,,,,,,,,,,,,
+97,u4098,u4095,very close,u4096,not close,u4097,not close,u4100,not close,u4101,not close,,not close
+98,u4099,u4096,not close,u4097,not close,u4098,not close,u4100,not close,u4101,not close,u4102,not close
+99,u4100,,,,,,,,,,,,
+100,u4101,u4098,not close,u4099,not close,u4100,not close,u4102,not close,u4103,not close,u4104,not close
+101,u4102,u4101,not close,,not close,,not close,,not close,,not close,,not close
+102,u4103,,,,,,,,,,,,
+103,u4104,u4101,not close,u4102,not close,u4105,not close,u4106,not close,u4107,somewhat close,u4120,not close
+104,u4105,u4102,not close,u4103,not close,u4104,not close,u4106,not close,,very close,,not close
+105,u4106,u4103,not close,u4104,not close,u4105,not close,u4107,not close,u4108,not close,u4109,not close
+106,u4107,u4104,not close,u4105,not close,u4108,not close,u4109,not close,u4110,not close,,not close
+107,u4108,u4105,not close,u4106,not close,u4107,not close,u4109,not close,u4110,not close,u4111,not close
+108,u4109,u4112,somewhat close,u4106,not close,u4107,somewhat close,u4108,not close,u4111,not close,u4110,not close
+109,u4110,,,,,,,,,,,,
+110,u4111,,not close,,not close,,not close,,not close,,not close,,not close
+111,u4112,u4113,not close,u4115,not close,u4110,not close,u4109,not close,u4114,not close,u4111,not close
+112,u4113,,,,,,,,,,,,
+113,u4114,u4111,not close,u4112,not close,u4113,not close,u4115,not close,u4116,not close,,not close
+114,u4115,,,,,,,,,,,,
+115,u4116,u4020,not close,u4113,not close,u4114,not close,u4115,not close,u4117,not close,u4118,not close
+116,u4117,u4114,not close,u4115,not close,u4116,not close,u4118,not close,u4119,not close,u4120,not close
+117,u4118,u4115,not close,u4116,not close,u4117,not close,u4119,not close,u4120,not close,u4121,not close
+118,u4119,u4116,not close,u4117,not close,u4118,not close,u4120,not close,u4121,not close,u4122,not close
+119,u4120,u4117,not close,u4118,not close,u4119,not close,u4121,not close,u4122,not close,u4123,not close
+120,u4121,,,,,,,,,,,,
+121,u4122,u4119,not close,u4120,not close,u4121,,u4123,,u4124,,,
+122,u4123,u4126,not close,u4120,not close,u4121,not close,u4122,not close,u4124,not close,u4125,not close
+123,u4124,,,,,,,,,,,,
+124,u4125,u4122,not close,u4123,not close,u4124,not close,u4126,not close,u4127,not close,u4128,not close
+125,u4126,,,,,,,,,,,,
+126,u4127,u4001,somewhat close,u4128,not close,u4002,not close,u4126,not close,u4124,not close,u4125,not close
+127,u4128,u4001,not close,u4002,not close,u4003,not close,u4125,not close,u4126,not close,u4127,not close
+128,u4129,u4136,not close,u4172,not close,u4197,not close,u4206,not close,u4213,not close,u4230,not close
+129,u4130,u4131,not close,u4145,not close,u4153,not close,u4167,not close,u4199,not close,u4255,not close
+130,u4131,u4130,not close,u4162,not close,u4177,not close,u4184,not close,u4241,not close,u4244,not close
+131,u4132,,,,,,,,,,,,
+132,u4133,,somewhat close,,not close,,not close,,not close,,not close,,not close
+133,u4134,,,,,,,,,,,,
+134,u4135,u4149,not close,u4184,not close,u4205,not close,u4220,not close,u4243,not close,u4246,not close
+135,u4136,u4129,not close,u4138,not close,u4152,not close,u4217,not close,u4249,not close,u4253,not close
+136,u4137,u4139,not close,u4164,not close,u4196,not close,u4154,not close,u4193,somewhat close,u4215,somewhat close
+137,u4138,,not close,,not close,,not close,,not close,,not close,,not close
+138,u4139,u4137,somewhat close,u4170,somewhat close,u4182,somewhat close,u4197,not close,u4232,not close,u4214,not close
+139,u4140,u4190,not close,u4203,not close,u4208,not close,u4217,not close,u4223,not close,u4234,somewhat close
+140,u4141,u4145,not close,u4148,not close,u4181,not close,u4186,not close,u4195,not close,u4223,not close
+141,u4142,u4146,not close,u4200,not close,u4212,not close,u4231,not close,u4240,not close,u4250,not close
+142,u4143,u4178,not close,u4211,not close,u4244,not close,u4196,not close,u4221,not close,u4248,not close
+143,u4144,,,,,,,,,,,,
+144,u4145,u4130,not close,u4141,not close,u4161,not close,u4204,not close,u4244,not close,u4251,not close
+145,u4146,,,,,,,,,,,,
+146,u4147,u4155,not close,u4133,not close,u4205,not close,u4209,not close,u4211,not close,u4254,not close
+147,u4148,u4141,not close,u4146,not close,u4169,not close,u4169,not close,u4200,not close,u4252,not close
+148,u4149,,,,,,,,,,,,
+149,u4150,,not close,,not close,,not close,,not close,,not close,,not close
+150,u4151,u4155,not close,u4170,not close,u4173,not close,u4223,not close,u4244,not close,u4249,not close
+151,u4152,u4136,not close,u4149,not close,u4193,not close,u4230,not close,u4254,not close,u4166,not close
+152,u4153,u4130,not close,u4163,not close,u4156,not close,u4193,not close,u4169,not close,,not close
+153,u4154,u4137,not close,u4179,not close,u4187,not close,u4210,not close,u4247,not close,,not close
+154,u4155,u4147,not close,u4151,very close,u4153,not close,u4180,not close,u4203,not close,u4216,not close
+155,u4156,u4153,not close,u4173,not close,u4175,not close,u4198,not close,u4227,not close,u4232,not close
+156,u4157,u4146,not close,u4212,not close,u4236,not close,u4180,not close,u4231,not close,u4242,not close
+157,u4158,,,,,,,,,,,,
+158,u4159,u4164,very close,u4203,somewhat close,u4194,not close,u4242,somewhat close,u4173,not close,u4154,not close
+159,u4160,,,,,,,,,,,,
+160,u4161,,,,,,,,,,,,
+161,u4162,u4183,not close,u4131,not close,u4144,not close,u4214,not close,u4196,not close,u4226,not close
+162,u4163,u4174,somewhat close,u4153,not close,u4176,not close,u4195,not close,u4207,not close,u4222,not close
+163,u4164,u4137,somewhat close,u4245,not close,u4237,somewhat close,u4159,not close,u4166,not close,u4243,not close
+164,u4165,u4132,not close,u4180,not close,u4192,not close,u4146,not close,u4181,not close,u4203,not close
+165,u4166,u4152,not close,u4164,not close,u4169,not close,u4181,not close,u4182,not close,u4217,not close
+166,u4167,,not close,,not close,,not close,,not close,,not close,,not close
+167,u4168,u4134,not close,u4138,not close,u4158,not close,u4189,not close,u4200,not close,u4225,not close
+168,u4169,u4148,not close,u4153,not close,u4158,not close,u4166,not close,u4191,not close,u4211,not close
+169,u4170,u4139,not close,u4151,not close,u4187,not close,u4251,not close,,not close,,not close
+170,u4171,u4158,not close,u4189,not close,u4191,not close,u4192,not close,u4235,not close,u4250,not close
+171,u4172,u4129,not close,u4195,not close,u4204,not close,u4222,not close,u4245,not close,u4247,not close
+172,u4173,,,,,,,,,,,,
+173,u4174,u4150,not close,u4163,not close,u4199,not close,u4201,not close,u4203,not close,u4247,not close
+174,u4175,u4202,not close,u4251,not close,u4149,not close,u4188,not close,u4213,not close,,not close
+175,u4176,u4163,not close,u4219,not close,u4229,not close,u4233,not close,u4241,not close,,not close
+176,u4177,u4131,not close,u4202,not close,u4146,not close,u4185,not close,,not close,,not close
+177,u4178,u4170,not close,u4224,not close,u4216,not close,u4182,not close,u4232,not close,u4143,not close
+178,u4179,,,,,,,,,,,,
+179,u4180,u4165,not close,u4157,not close,u4235,not close,u4155,not close,u4193,not close,u4232,not close
+180,u4181,u4141,not close,u4165,not close,u4166,not close,u4228,not close,u4230,not close,u4236,not close
+181,u4182,u4139,somewhat close,u4183,not close,u4193,not close,u4200,not close,u4223,not close,u4235,not close
+182,u4183,u4162,not close,u4182,,u4245,,u4246,,u4225,,u4245,
+183,u4184,,,,,,,,,,,,
+184,u4185,u4199,not close,u4230,not close,u4177,not close,,not close,,not close,,somewhat close
+185,u4186,,,,,,,,,,,,
+186,u4187,u4154,not close,u4170,not close,u4204,not close,u4229,not close,u4238,not close,u4242,not close
+187,u4188,u4205,not close,u4175,not close,u4214,not close,u4220,not close,u4253,not close,u4254,not close
+188,u4189,,,,,,,,,,,,
+189,u4190,u4134,not close,u4140,not close,u4216,not close,u4224,not close,u4245,not close,u4256,not close
+190,u4191,,,,,,,,,,,,
+191,u4192,,,,,,,,,,,,
+192,u4193,u4137,somewhat close,u4182,somewhat close,u4235,not close,u4153,not close,u4180,not close,u4182,not close
+193,u4194,u4189,not close,u4221,not close,u4209,not close,u4159,not close,u4173,not close,u4167,not close
+194,u4195,,,,,,,,,,,,
+195,u4196,,not close,,not close,,not close,,not close,,not close,,not close
+196,u4197,,,,,,,,,,,,
+197,u4198,,,,,,,,,,,,
+198,u4199,u4130,not close,u4167,not close,u4174,not close,u4185,not close,u4225,not close,u4227,not close
+199,u4200,u4142,not close,u4148,not close,u4168,not close,u4182,not close,u4219,not close,u4236,not close
+200,u4201,,not close,,not close,,not close,,not close,,not close,,not close
+201,u4202,,,,,,,,,,,,
+202,u4203,u4140,not close,u4155,not close,u4159,not close,u4165,not close,u4174,somewhat close,u4234,not close
+203,u4204,u4205,not close,u4205,not close,u4205,not close,u4205,not close,u4205,not close,u4205,not close
+204,u4205,,,,,,,,,,,,
+205,u4206,,,,,,,,,,,,
+206,u4207,,not close,,not close,,not close,,not close,,not close,,not close
+207,u4208,,,,,,,,,,,,
+208,u4209,u4221,not close,u4229,not close,u4132,not close,u4147,not close,u4194,not close,u4217,not close
+209,u4210,,not close,,not close,,not close,,not close,,not close,,not close
+210,u4211,,,,,,,,,,,,
+211,u4212,u4142,not close,u4157,not close,u4179,not close,u4208,not close,u4215,not close,u4236,not close
+212,u4213,,,,,,,,,,,,
+213,u4214,,,,,,,,,,,,
+214,u4215,u4137,somewhat close,u4195,not close,u4197,not close,u4212,not close,u4237,somewhat close,u4241,not close
+215,u4216,u4229,not close,u4229,not close,u4229,not close,u4229,not close,,not close,,not close
+216,u4217,u4136,not close,u4140,somewhat close,u4161,not close,u4166,not close,u4209,not close,u4241,not close
+217,u4218,,,,,,,,,,,,
+218,u4219,,,,,,,,,,,,
+219,u4220,u4135,not close,u4173,not close,u4188,not close,u4191,not close,u4225,not close,u4233,not close
+220,u4221,u4132,not close,u4143,not close,u4144,not close,u4209,somewhat close,u4194,not close,u4211,not close
+221,u4222,u4163,not close,u4167,not close,u4172,not close,u4189,not close,u4193,not close,u4249,not close
+222,u4223,u4140,not close,u4141,not close,u4151,not close,u4182,not close,u4224,not close,u4251,not close
+223,u4224,u4178,not close,u4190,not close,u4223,not close,u4228,not close,u4231,not close,u4239,not close
+224,u4225,,,,,,,,,,,,
+225,u4226,,,,,,,,,,,,
+226,u4227,,,,,,,,,,,,
+227,u4228,u4181,not close,u4195,not close,u4229,somewhat close,u4224,somewhat close,u4235,somewhat close,u4237,not close
+228,u4229,u4228,not close,u4209,not close,u4238,not close,u4187,not close,u4216,not close,u4176,not close
+229,u4230,u4152,not close,u4181,not close,u4185,not close,u4235,not close,u4250,not close,,not close
+230,u4231,,not close,,,,,,,,,,
+231,u4232,u4139,not close,u4156,not close,u4178,not close,u4180,not close,u4182,not close,u4193,not close
+232,u4233,,,,,,,,,,,,
+233,u4234,u4140,not close,u4149,not close,u4173,not close,u4182,not close,u4184,not close,u4203,not close
+234,u4235,u4171,not close,u4177,not close,u4180,not close,u4193,not close,u4228,not close,u4230,not close
+235,u4236,u4200,somewhat close,u4212,somewhat close,u4157,somewhat close,u4227,somewhat close,u4181,somewhat close,,somewhat close
+236,u4237,u4164,not close,u4185,not close,u4186,not close,u4215,not close,u4228,not close,u4244,not close
+237,u4238,u4184,not close,u4187,not close,u4218,not close,u4229,not close,u4247,not close,u4252,not close
+238,u4239,,not close,,not close,,not close,,not close,,not close,,not close
+239,u4240,,not close,,not close,,not close,,not close,,not close,,not close
+240,u4241,,,,,,,,,,,,
+241,u4242,u4133,not close,u4157,not close,u4159,not close,u4177,not close,u4187,not close,u4206,not close
+242,u4243,,,,,,,,,,,,
+243,u4244,,,,,,,,,,,,
+244,u4245,u4164,not close,u4172,not close,u4183,not close,u4190,not close,u4201,not close,u4240,not close
+245,u4246,u4135,not close,u4138,somewhat close,u4161,somewhat close,u4183,somewhat close,u4231,not close,u4240,not close
+246,u4247,u4174,not close,u4172,not close,u4253,not close,u4207,not close,,not close,,not close
+247,u4248,,,,,,,,,,,,
+248,u4249,u4136,not close,u4151,not close,u4218,not close,u4222,not close,u4239,not close,u4254,not close
+249,u4250,u4132,not close,u4150,not close,u4224,not close,u4230,not close,u4142,not close,u4171,not close
+250,u4251,u4133,not close,u4145,not close,u4170,not close,u4175,not close,u4201,not close,u4223,not close
+251,u4252,,,,,,,,,,,,
+252,u4253,,not close,,not close,,not close,,not close,,not close,,not close
+253,u4254,u4147,not close,u4152,not close,u4167,not close,u4188,not close,u4210,not close,u4249,not close
+254,u4255,,not close,,not close,,not close,,not close,,very close,,not close
+255,u4256,,not close,,not close,,not close,,not close,,not close,,not close
